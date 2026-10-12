@@ -34,7 +34,10 @@ def build_instructions(
         lines.append("Responda com 1 objeto JSON por linha, seguindo o JSON Schema do pedido.")
     lines.append("Varie os valores entre os registros; não repita registros.")
     lines.append("Use dados fictícios; não use dados pessoais reais.")
-    lines.append(f"Bloco {block} de {blocks}, rodada {round_} de {MAX_ROUNDS}.")
+    if round_ <= MAX_ROUNDS:
+        lines.append(f"Bloco {block} de {blocks}, rodada {round_} de {MAX_ROUNDS}.")
+    else:
+        lines.append(f"Bloco {block} de {blocks}, rodada {round_}.")
     return "\n".join(lines)
 
 

@@ -57,7 +57,7 @@ class RunState(BaseModel):
     accepted: int = Field(default=0, ge=0)
     discarded_invalid: int = Field(default=0, ge=0)
     discarded_duplicate: int = Field(default=0, ge=0)
-    round: int = Field(default=0, ge=0, le=MAX_ROUNDS)
+    round: int = Field(default=0, ge=0)
     block_size: int = Field(ge=1, le=MAX_BLOCK_OVERRIDE)
     avg_tokens: int = Field(ge=1)
     estimate_usd: Decimal | None = None

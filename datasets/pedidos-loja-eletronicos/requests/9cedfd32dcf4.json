@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "9cedfd32dcf4",
+  "created_at": "2026-10-12T14:38:38Z",
+  "n_records": 100,
+  "instructions": "Gere exatamente 100 registro(s) sintético(s) para o dataset \"pedidos-loja-eletronicos\".\nObjetivo: treinar llm para classificar os tipos de pedidos\nEstrutura: texto do pedido do cliente e o rótulo do tipo, nome do cliente, email, telefone e mensagens de clientes\nRegras: os tipos são compra, troca, devolução, garantia e cancelamento\nOs exemplos vêm da amostra aprovada: use-os como referência e não repita nenhum.\nResponda com 1 objeto JSON por linha, seguindo o JSON Schema do pedido.\nVarie os valores entre os registros; não repita registros.\nUse dados fictícios; não use dados pessoais reais.\nBloco 1 de 1, rodada 1 de 4.",
+  "schema_json": {
+    "additionalProperties": false,
+    "properties": {
+      "texto_pedido": {
+        "description": "Texto do pedido escrito pelo cliente de uma loja de eletrônicos, em português",
+        "maxLength": 600,
+        "minLength": 20,
+        "title": "Texto Pedido",
+        "type": "string"
+      },
+      "tipo_pedido": {
+        "description": "Rótulo do tipo de pedido",
+        "enum": [
+          "compra",
+          "troca",
+          "devolução",
+          "garantia",
+          "cancelamento"
+        ],
+        "title": "Tipo Pedido",
+        "type": "string"
+      },
+      "nome_cliente": {
+        "description": "Nome completo fictício do cliente",
+        "maxLength": 80,
+        "minLength": 3,
+        "title": "Nome Cliente",
+        "type": "string"
+      },
+      "email": {
+        "description": "Endereço de e-mail fictício do cliente",
+        "maxLength": 120,
+        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+        "title": "Email",
+        "type": "string"
+      },
+      "telefone": {
+        "description": "Telefone fictício do cliente no formato brasileiro, ex.: (11) 91234-5678",
+        "pattern": "^\\(\\d{2}\\) 9?\\d{4}-\\d{4}$",
+        "title": "Telefone",
+        "type": "string"
+      },
+      "mensagens_cliente": {
+        "description": "Mensagens adicionais do cliente sobre o pedido, de 1 a 4 mensagens separadas por ' | '",
+        "maxLength": 1200,
+        "minLength": 10,
+        "title": "Mensagens Cliente",
+        "type": "string"
+      }
+    },
+    "required": [
+      "texto_pedido",
+      "tipo_pedido",
+      "nome_cliente",
+      "email",
+      "telefone",
+      "mensagens_cliente"
+    ],
+    "title": "Record",
+    "type": "object"
+  },
+  "seeds": [
+    {
+      "texto_pedido": "Boa tarde, quero comprar o notebook Lenovo IdeaPad 15 com 16GB de RAM que vi no site. Ele está disponível para entrega em São Paulo ainda esta semana?",
+      "tipo_pedido": "compra",
+      "nome_cliente": "Mariana Teixeira Lopes",
+      "email": "eloa92@example.com",
+      "telefone": "(27) 92979-4274",
+      "mensagens_cliente": "Posso pagar em 10 vezes sem juros? | Se tiver a cor cinza, prefiro essa."
+    },
+    {
+      "texto_pedido": "Recebi o fone Bluetooth ontem, mas o lado esquerdo não liga de jeito nenhum. Comprei há só 4 meses e quero acionar a garantia para conserto ou substituição.",
+      "tipo_pedido": "garantia",
+      "nome_cliente": "Rafael Augusto Pinheiro",
+      "email": "da-luzisabelly@example.com",
+      "telefone": "(73) 96153-6536",
+      "mensagens_cliente": "Já tentei resetar como diz o manual. | Ainda tenho a nota fiscal e a caixa original. | Preciso enviar pelos Correios ou levar na loja?"
+    },
+    {
+      "texto_pedido": "Fiz o pedido de uma smart TV 55 polegadas hoje de manhã, mas achei mais barato em outro lugar. Quero cancelar antes que seja enviado, por favor.",
+      "tipo_pedido": "cancelamento",
+      "nome_cliente": "Juliana Costa Ramos",
+      "email": "vasconceloslevi@example.org",
+      "telefone": "(18) 99104-6363",
+      "mensagens_cliente": "O pagamento foi no cartão, o estorno cai em quanto tempo?"
+    }
+  ],
+  "response_format": "1 objeto JSON por linha (JSONL), sem texto extra"
+}

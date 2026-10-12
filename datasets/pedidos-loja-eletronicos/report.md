@@ -1,22 +1,22 @@
 # Relatório de qualidade: pedidos-loja-eletronicos
 
-**Veredito:** REPROVADO
-**Emitido em:** 2026-10-12T14:15:07Z
+**Veredito:** APROVADO
+**Emitido em:** 2026-10-12T14:40:41Z
 **Contrato:** ae61eedf7474dbc5e0bdaf79832c5dfc62d6875beb313de28c054bad24b08ef4
-**Status do lote:** falha_provedor
-**Registros:** 0 lidos, 0 válidos, 1000 pedidos
+**Status do lote:** concluido
+**Registros:** 100 lidos, 100 válidos, 100 pedidos
 
 ## Métricas
 
-- Conformidade: 0,0% (meta ≥ 95%) [falhou]
-- Unicidade estrutural: 0,0% (meta ≥ 90%) [falhou]
-- Unicidade semântica: 0,0% (meta ≥ 90%) [falhou]
+- Conformidade: 100,0% (meta ≥ 95%) [ok]
+- Unicidade estrutural: 100,0% (meta ≥ 90%) [ok]
+- Unicidade semântica: 100,0% (meta ≥ 90%) [ok]
 - Vazamentos de PII: 0 (meta 0) [ok]
-- Duração: 24,6 min
+- Duração: 50,1 min (meta < 10 min: não atingida)
 
 ## Avisos
 
-- o lote terminou com status falha_provedor
+- nenhum
 
 ## Registros com problema
 

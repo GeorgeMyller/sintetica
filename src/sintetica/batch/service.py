@@ -253,7 +253,12 @@ def status_lines(dataset: Path, state: RunState, alive: bool) -> list[str]:
     budget = f" de US$ {usd(state.authorized_usd)} autorizados" if state.authorized_usd else ""
     lines.append(f"Custo: US$ {usd(state.cost_usd)}{budget}")
     lines.append(f"Provedor: {state.provider} ({state.provider_reason})")
-    lines.append(f"Bloco: {state.block_size} registro(s); rodada {state.round} de {MAX_ROUNDS}")
+    round_label = (
+        f"rodada {state.round} de {MAX_ROUNDS}"
+        if state.round <= MAX_ROUNDS
+        else f"rodada {state.round}"
+    )
+    lines.append(f"Bloco: {state.block_size} registro(s); {round_label}")
     if state.stop_cause:
         lines.append(f"Causa: {state.stop_cause}")
     if state.status in ("iniciando", "em_andamento") and not alive:
@@ -304,14 +309,30 @@ def _final_lines(ctx: _Ctx, state: RunState, dest: Path) -> list[str]:
 
 
 def _pending_lines(ctx: _Ctx, state: RunState) -> list[str]:
-    path = RequestStore(ctx.dataset).request_path(state.pending_request_id or "")
-    return [
-        f"Pedido para o agente (rodada {state.round} de {MAX_ROUNDS}, "
-        f"{state.missing} registros): {path.resolve()}",
+    store = RequestStore(ctx.dataset)
+    req_id = state.pending_request_id or ""
+    path = store.request_path(req_id)
+    req = store.load_request(req_id)
+    round_label = (
+        f"rodada {state.round} de {MAX_ROUNDS}"
+        if state.round <= MAX_ROUNDS
+        else f"rodada {state.round}"
+    )
+    lines = [
+        f"Pedido para o agente ({round_label}, {state.missing} registros): {path.resolve()}",
         "Gere os registros conforme o pedido e envie 1 objeto JSON por linha:",
         f"  {state.pending_command} < registros.jsonl",
         f"Depois rode: {cli_command()} generate {ctx.slug}",
     ]
+    if req is not None:
+        lines.append("")
+        lines.append("--- INSTRUÇÕES DO PEDIDO ---")
+        lines.append(req.instructions)
+        lines.append("")
+        lines.append("--- JSON SCHEMA DOS REGISTROS ---")
+        lines.append(json.dumps(req.schema_json, ensure_ascii=False, indent=2))
+        lines.append("--- FIM DO PEDIDO ---")
+    return lines
 
 
 # -- lote novo, lote existente e execução -------------------------------------------------
@@ -550,7 +571,7 @@ def generate(
             state = _resolve_existing(ctx, state, resume, authorize_usd, block_size_override, out)
             if state is None:
                 state = _prepare_new(ctx, authorize_usd, block_size_override, factory, out)
-            if state.volume_requested > BACKGROUND_ABOVE:
+            if state.provider != HARNESS and state.volume_requested > BACKGROUND_ABOVE:
                 return _launch_background(ctx, state, lock, spawner or start_background, out)
             return _execute(ctx, state, factory, progress, out)
         finally:

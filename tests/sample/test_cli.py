@@ -56,6 +56,8 @@ def test_first_run_writes_request_and_waits_for_agent(
     out = capsys.readouterr().out
     rid = pending_id(project)
     assert f"uv run sintetica submit pedidos {rid}" in out and "estado aguardando_agente" in out
+    assert "--- INSTRUÇÕES DO PEDIDO ---" in out
+    assert "--- JSON SCHEMA DOS REGISTROS ---" in out
     request = json.loads((path / "requests" / f"{rid}.json").read_text("utf-8"))
     assert request["n_records"] == 3
     assert request["schema_json"] == json.loads((path / "record.schema.json").read_text("utf-8"))

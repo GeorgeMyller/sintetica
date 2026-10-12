@@ -1,17 +1,13 @@
 {
   "slug": "pedidos-loja-eletronicos",
-  "verdict": "REPROVADO",
-  "failed_metrics": [
-    "conformidade",
-    "unicidade_estrutural",
-    "unicidade_semantica"
-  ],
-  "volume_requested": 1000,
-  "records_read": 0,
-  "valid_records": 0,
-  "conformity_pct": 0.0,
-  "structural_uniqueness_pct": 0.0,
-  "semantic_uniqueness_pct": 0.0,
+  "verdict": "APROVADO",
+  "failed_metrics": [],
+  "volume_requested": 100,
+  "records_read": 100,
+  "valid_records": 100,
+  "conformity_pct": 100.0,
+  "structural_uniqueness_pct": 100.0,
+  "semantic_uniqueness_pct": 100.0,
   "semantic_applicable": true,
   "pii_leaks": 0,
   "pii_findings": [],
@@ -35,18 +31,16 @@
       "Um CPF ou CNPJ falso válido pode coincidir com um documento real de outra pessoa."
     ]
   },
-  "duration_min": 24.6,
-  "time_target_met": null,
-  "run_status": "falha_provedor",
+  "duration_min": 50.1,
+  "time_target_met": false,
+  "run_status": "concluido",
   "schema_version": "ae61eedf7474dbc5e0bdaf79832c5dfc62d6875beb313de28c054bad24b08ef4",
-  "warnings": [
-    "o lote terminou com status falha_provedor"
-  ],
+  "warnings": [],
   "problem_indices": {
     "invalid": [],
     "duplicates": [],
     "near_duplicates": [],
     "pii": []
   },
-  "finished_at": "2026-10-12T14:15:07Z"
+  "finished_at": "2026-10-12T14:40:41Z"
 }

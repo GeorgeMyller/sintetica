@@ -40,11 +40,13 @@ def select_provider(
     priority: Sequence[str], n_records: int, availability: Availability
 ) -> ProviderChoice:
     skipped: list[str] = []
+    harness_oversized = False
     for provider in priority:
         if provider == HARNESS:
             if not availability.harness:
                 skipped.append("harness indisponível: execução fora do agente do harness")
             elif n_records > MAX_HARNESS_RECORDS:
+                harness_oversized = True
                 skipped.append(f"harness pulado: {n_records} > {MAX_HARNESS_RECORDS} registros")
             else:
                 return _choice(HARNESS, None, f"harness atende {n_records} registros", skipped)
@@ -60,6 +62,13 @@ def select_provider(
                 env_var = BACKENDS[backend].key_env_var
                 return _choice(EXTERNAL, backend, f"external/{backend} com {env_var}", skipped)
             skipped.append("external indisponível: nenhuma chave de API definida")
+    if harness_oversized and availability.harness:
+        return _choice(
+            HARNESS,
+            None,
+            f"harness atende {n_records} registros em blocos de até {MAX_HARNESS_RECORDS}",
+            skipped,
+        )
     raise ProviderUnavailable(checked_sources(availability.ollama_host))
 
 

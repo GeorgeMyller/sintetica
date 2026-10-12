@@ -152,6 +152,16 @@ sintetica eval <slug>
 
 ---
 
+## 🤖 Provedores de LLM e Sessão do Harness
+
+O Sintetica suporta múltiplos provedores ordenados por `.sintetica/policy.json` (ou pela variável `SINTETICA_PROVIDER`):
+
+1. **Harness (Sessão do Agente):** Quando executado dentro de uma sessão de IA (Claude Code, Antigravity, Cursor), a própria sessão cria os dados sem depender de chaves de API nem servidores locais. As instruções e o JSON Schema são exibidos diretamente no terminal, e lotes de qualquer volume são processados interativamente em blocos de até 100 registros.
+2. **Ollama Local:** Detectado automaticamente em `localhost:11434` (ou `OLLAMA_HOST`) para geração automatizada local.
+3. **APIs Externas:** Suporte com controle estrito de teto de custos para OpenAI, Anthropic e Gemini via chaves no ambiente (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`).
+
+---
+
 ## 📁 Estrutura de Arquivos de um Dataset
 
 Cada dataset criado é mantido de forma autocontida em `datasets/<slug>/`:

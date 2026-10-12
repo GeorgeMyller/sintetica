@@ -35,7 +35,7 @@ from sintetica.intent import IntentModel
 from sintetica.providers.decorators.concurrency import DEFAULT_CONCURRENCY
 from sintetica.providers.domain import STOP_BUDGET
 from sintetica.providers.errors import HarnessResponsePending, ProviderError
-from sintetica.providers.harness.store import RequestStore
+from sintetica.providers.harness.store import MAX_HARNESS_RECORDS, RequestStore
 from sintetica.providers.ports import LLMProvider
 from sintetica.sample.review import Masker
 
@@ -206,10 +206,13 @@ class BatchEngine:
                     }
                 )
             )
-            ctx.progress(self._line(state, 1, 1))
-        while state.missing > 0 and state.round < MAX_ROUNDS:
+        max_harness_rounds = max(
+            MAX_ROUNDS,
+            (state.volume_requested + MAX_HARNESS_RECORDS - 1) // MAX_HARNESS_RECORDS + 5,
+        )
+        while state.missing > 0 and state.round < max_harness_rounds:
             round_ = state.round + 1
-            k = state.missing
+            k = min(state.missing, MAX_HARNESS_RECORDS)
             request = build_batch_request(
                 ctx.intent, ctx.schema_json, ctx.seeds, k, 1, 1, round_, harness=True
             )

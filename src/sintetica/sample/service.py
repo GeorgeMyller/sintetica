@@ -271,8 +271,11 @@ def _report(ctx: _Ctx, state: SampleState, out: list[str]) -> list[str]:
     if state.provider:
         head.append(f"Provedor: {state.provider} ({state.provider_reason})")
     if state.status == "aguardando_agente":
-        path = RequestStore(ctx.dataset).request_path(state.pending_request_id or "")
-        return [
+        store = RequestStore(ctx.dataset)
+        req_id = state.pending_request_id or ""
+        path = store.request_path(req_id)
+        req = store.load_request(req_id)
+        report_lines = [
             *head,
             *out,
             f"Pedido para o agente (tentativa {state.attempt} de {MAX_ATTEMPTS}): {path.resolve()}",
@@ -280,6 +283,15 @@ def _report(ctx: _Ctx, state: SampleState, out: list[str]) -> list[str]:
             f"  {state.pending_command} < registros.jsonl",
             f"Depois rode: {cli_command()} sample run {ctx.slug}",
         ]
+        if req is not None:
+            report_lines.append("")
+            report_lines.append("--- INSTRUÇÕES DO PEDIDO ---")
+            report_lines.append(req.instructions)
+            report_lines.append("")
+            report_lines.append("--- JSON SCHEMA DOS REGISTROS ---")
+            report_lines.append(json.dumps(req.schema_json, ensure_ascii=False, indent=2))
+            report_lines.append("--- FIM DO PEDIDO ---")
+        return report_lines
     lines = [*head, *out, *render_records(state.accepted, ctx.model, ctx.fmt)]
     if state.status in ("em_revisao", "interrompida"):
         lines += [

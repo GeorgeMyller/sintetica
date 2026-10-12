@@ -7,6 +7,7 @@ Padrões de `cli-installer` RF-06: `pii_premask: true`, `cost_ceiling_usd: 5.00`
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from decimal import Decimal
 from pathlib import Path
@@ -18,6 +19,7 @@ POLICY_RELATIVE_PATH = Path(".sintetica") / "policy.json"
 DEFAULT_CEILING = Decimal("5.00")
 DEFAULT_PRIORITY: tuple[str, ...] = (HARNESS, OLLAMA, EXTERNAL)
 _KNOWN_PROVIDERS = frozenset(DEFAULT_PRIORITY)
+PROVIDER_ENV = "SINTETICA_PROVIDER"
 
 
 @dataclass(frozen=True, slots=True)
@@ -29,8 +31,14 @@ class ProviderPolicy:
 
 def load_provider_policy(path: Path) -> ProviderPolicy:
     """Arquivo ausente: padrões. Conteúdo inválido: `ProviderPolicyError`."""
+    forced = os.environ.get(PROVIDER_ENV, "").strip().lower()
+    forced_priority = (
+        (forced, *(p for p in DEFAULT_PRIORITY if p != forced))
+        if forced in _KNOWN_PROVIDERS
+        else DEFAULT_PRIORITY
+    )
     if not path.exists():
-        return ProviderPolicy()
+        return ProviderPolicy(provider_priority=forced_priority)
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
@@ -60,4 +68,6 @@ def load_provider_policy(path: Path) -> ProviderPolicy:
             raise ProviderPolicyError(
                 f"provider_priority: valor desconhecido {item!r}; use harness, ollama ou external"
             )
+    if forced in _KNOWN_PROVIDERS:
+        priority = [forced, *(p for p in priority if p != forced)]
     return ProviderPolicy(premask, ceiling, tuple(priority))

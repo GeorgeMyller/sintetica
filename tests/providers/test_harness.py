@@ -117,3 +117,15 @@ def test_fewer_records_than_requested_are_accepted(dataset: Path) -> None:
 def test_request_needs_at_least_one_record() -> None:
     with pytest.raises(ValueError, match="n_records"):
         make_request(n_records=0)
+
+
+def test_load_request(dataset: Path) -> None:
+    store = RequestStore(dataset)
+    req = make_request(n_records=10, instructions="Instruções de teste")
+    rid = store.save_request(req)
+    loaded = store.load_request(rid)
+    assert loaded is not None
+    assert loaded.n_records == 10
+    assert loaded.instructions == "Instruções de teste"
+    assert loaded.schema_json == dict(req.schema_json)
+    assert store.load_request("inexistente") is None

@@ -164,3 +164,14 @@ def test_factory_without_any_provider(project: Path) -> None:
             project_dir=project,
             probe_transport=_offline(),
         )
+
+
+def test_large_batch_falls_back_to_harness_when_no_other_provider() -> None:
+    availability, probes = _avail(harness=True)
+    choice = select_provider(PRIORITY, 250, availability)
+    assert (choice.provider, choice.backend) == ("harness", None)
+    assert "harness atende 250 registros em blocos de até 100" in choice.reason
+    assert "harness pulado: 250 > 100 registros" in choice.reason
+    assert f"ollama indisponível em {HOST}" in choice.reason
+    assert "external indisponível" in choice.reason
+    assert probes == [1]

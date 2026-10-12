@@ -49,6 +49,8 @@ def test_harness_lot_end_to_end(
     out = capsys.readouterr().out
     assert "1 pedido ao agente do harness" in out
     assert "uv run sintetica submit pedidos" in out
+    assert "--- INSTRUÇÕES DO PEDIDO ---" in out
+    assert "--- JSON SCHEMA DOS REGISTROS ---" in out
     state = run_state(project)
     assert state.status == "aguardando_agente" and state.provider == "harness"
     first_id = state.pending_request_id
@@ -177,3 +179,56 @@ def test_provider_is_chosen_by_total_volume(project: Path, monkeypatch: pytest.M
     assert "harness pulado: 1000 > 100" in big.reason
     _, small = _default_provider(50, path, project, None, None)
     assert small.provider == "harness"
+
+
+def test_harness_large_batch_in_foreground_chunks(
+    project: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("OLLAMA_HOST", "http://127.0.0.1:9")  # sem Ollama
+    prepare(project, volume=120)
+    capsys.readouterr()
+    # 120 > 100, mas como o provedor é o harness, não vai para background!
+    assert cli(project, "generate", "pedidos") == 0
+    out = capsys.readouterr().out
+    assert "--- INSTRUÇÕES DO PEDIDO ---" in out
+    assert "--- JSON SCHEMA DOS REGISTROS ---" in out
+    state = run_state(project)
+    assert state.status == "aguardando_agente" and state.provider == "harness"
+    assert state.mode == "foreground"
+    assert state.volume_requested == 120
+    assert state.round == 1
+    rid1 = state.pending_request_id
+    assert rid1 is not None
+    req1 = json.loads((dataset(project) / "requests" / f"{rid1}.json").read_text("utf-8"))
+    assert req1["n_records"] == 100
+
+    # Submete os primeiros 100 registros
+    block1 = [{"cliente": f"Cliente_{i}", "valor": 10} for i in range(100)]
+    assert submit(project, monkeypatch, rid1, block1) == 0
+
+    capsys.readouterr()
+    assert cli(project, "generate", "pedidos") == 0
+    out2 = capsys.readouterr().out
+    assert "--- INSTRUÇÕES DO PEDIDO ---" in out2
+    state2 = run_state(project)
+    assert state2.status == "aguardando_agente"
+    assert state2.accepted == 100
+    assert state2.missing == 20
+    assert state2.round == 2
+    rid2 = state2.pending_request_id
+    assert rid2 is not None and rid2 != rid1
+    req2 = json.loads((dataset(project) / "requests" / f"{rid2}.json").read_text("utf-8"))
+    assert req2["n_records"] == 20
+
+    # Submete os 20 registros restantes
+    block2 = [{"cliente": f"Cliente_Final_{i}", "valor": 20} for i in range(20)]
+    assert submit(project, monkeypatch, rid2, block2) == 0
+
+    capsys.readouterr()
+    assert cli(project, "generate", "pedidos") == 0
+    out3 = capsys.readouterr().out
+    assert "Lote concluido: 120 de 120" in out3
+    state3 = run_state(project)
+    assert state3.status == "concluido"
+    assert state3.accepted == 120
+    assert state3.missing == 0

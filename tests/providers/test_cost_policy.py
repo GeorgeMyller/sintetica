@@ -149,3 +149,14 @@ def test_policy_invalid(tmp_path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
     with pytest.raises(ProviderPolicyError):
         load_provider_policy(path)
+
+
+def test_policy_forced_provider_from_env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    path = tmp_path / "policy.json"
+    monkeypatch.setenv("SINTETICA_PROVIDER", "ollama")
+    policy = load_provider_policy(path)
+    assert policy.provider_priority[0] == "ollama"
+
+    write_json(path, {"provider_priority": ["external", "harness"]})
+    policy2 = load_provider_policy(path)
+    assert policy2.provider_priority == ("ollama", "external", "harness")

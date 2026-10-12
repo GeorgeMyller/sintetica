@@ -76,6 +76,22 @@ class RequestStore:
             _write_atomic(path, json.dumps(body, ensure_ascii=False, indent=2) + "\n")
         return rid
 
+    def load_request(self, rid: str) -> GenerationRequest | None:
+        """Carrega o pedido gravado em requests/<id>.json se existir."""
+        path = self.request_path(rid)
+        if not path.exists():
+            return None
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            return GenerationRequest(
+                schema_json=data.get("schema_json", {}),
+                seeds=data.get("seeds", []),
+                instructions=str(data.get("instructions", "")),
+                n_records=int(data.get("n_records", 0)),
+            )
+        except (OSError, json.JSONDecodeError, KeyError, ValueError):
+            return None
+
     def _n_records(self, rid: str) -> int:
         path = self.request_path(rid)
         if not path.exists():
