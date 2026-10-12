@@ -1,0 +1,13 @@
+{
+  "name": "sintetica",
+  "version": "0.1.0",
+  "description": "Instalador das skills do sintetica: geração de dados sintéticos orientada por intenção.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "sintetica": "installer/bin/sintetica.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
