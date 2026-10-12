@@ -1,0 +1,71 @@
+{
+  "fields": [
+    {
+      "constraints": {
+        "max_length": 600,
+        "min_length": 20
+      },
+      "description": "Texto do pedido escrito pelo cliente de uma loja de eletrônicos, em português",
+      "name": "texto_pedido",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "choices": [
+          "compra",
+          "troca",
+          "devolução",
+          "garantia",
+          "cancelamento"
+        ]
+      },
+      "description": "Rótulo do tipo de pedido",
+      "name": "tipo_pedido",
+      "required": true,
+      "type": "enum"
+    },
+    {
+      "constraints": {
+        "max_length": 80,
+        "min_length": 3
+      },
+      "description": "Nome completo fictício do cliente",
+      "name": "nome_cliente",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "max_length": 120,
+        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+      },
+      "description": "Endereço de e-mail fictício do cliente",
+      "name": "email",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "pattern": "^\\(\\d{2}\\) 9?\\d{4}-\\d{4}$"
+      },
+      "description": "Telefone fictício do cliente no formato brasileiro, ex.: (11) 91234-5678",
+      "name": "telefone",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "max_length": 1200,
+        "min_length": 10
+      },
+      "description": "Mensagens adicionais do cliente sobre o pedido, de 1 a 4 mensagens separadas por ' | '",
+      "name": "mensagens_cliente",
+      "required": true,
+      "type": "text"
+    }
+  ],
+  "format": "csv",
+  "kind": "records",
+  "model_name": "Record"
+}

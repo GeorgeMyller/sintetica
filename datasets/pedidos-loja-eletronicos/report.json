@@ -1,0 +1,52 @@
+{
+  "slug": "pedidos-loja-eletronicos",
+  "verdict": "REPROVADO",
+  "failed_metrics": [
+    "conformidade",
+    "unicidade_estrutural",
+    "unicidade_semantica"
+  ],
+  "volume_requested": 1000,
+  "records_read": 0,
+  "valid_records": 0,
+  "conformity_pct": 0.0,
+  "structural_uniqueness_pct": 0.0,
+  "semantic_uniqueness_pct": 0.0,
+  "semantic_applicable": true,
+  "pii_leaks": 0,
+  "pii_findings": [],
+  "pii_coverage": {
+    "types": [
+      "cpf",
+      "cnpj",
+      "email",
+      "phone",
+      "card",
+      "ipv4",
+      "ipv6"
+    ],
+    "custom_patterns": 0,
+    "limits": [
+      "Nomes de pessoas não são detectados.",
+      "Endereços em texto livre não são detectados.",
+      "CNPJ alfanumérico não é detectado; só o formato numérico.",
+      "Telefone só é detectado com formatação ou prefixo +55; dígitos corridos não contam.",
+      "Números de versão no formato a.b.c.d podem ser detectados como IPv4 (falso positivo aceito).",
+      "Um CPF ou CNPJ falso válido pode coincidir com um documento real de outra pessoa."
+    ]
+  },
+  "duration_min": 24.6,
+  "time_target_met": null,
+  "run_status": "falha_provedor",
+  "schema_version": "ae61eedf7474dbc5e0bdaf79832c5dfc62d6875beb313de28c054bad24b08ef4",
+  "warnings": [
+    "o lote terminou com status falha_provedor"
+  ],
+  "problem_indices": {
+    "invalid": [],
+    "duplicates": [],
+    "near_duplicates": [],
+    "pii": []
+  },
+  "finished_at": "2026-10-12T14:15:07Z"
+}

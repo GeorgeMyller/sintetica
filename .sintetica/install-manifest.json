@@ -1,6 +1,6 @@
 {
   "sintetica_version": "0.1.0",
-  "installed_at": "2026-10-12T11:04:57Z",
+  "installed_at": "2026-10-12T13:48:04Z",
   "files": [
     {
       "path": ".agents/skills/sintetica-eval/SKILL.md",
@@ -55,12 +55,8 @@
       "sha256": "5d2828381dc5720f71c2ed816cf4d6bc717e6ffbbd5c446ab5a33b43a83f2a42"
     },
     {
-      "path": ".sintetica/runtime/sintetica-0.1.0-py3-none-any.whl",
-      "sha256": "bffd993a4503f8035fbbb0e50cf55ba74412b98822a7e524350d14ddd230dd20"
-    },
-    {
       "path": ".sintetica/state.json",
-      "sha256": "4a2423136abe5d46589c5305f3334b984de3a06d8b062ac70f90fe9150851571"
+      "sha256": "eb7bfd313d725de9735b63e717722f5917c228b7fa8965875920fb3182b5f1aa"
     }
   ]
 }

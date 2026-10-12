@@ -1,0 +1,61 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "texto_pedido": {
+      "description": "Texto do pedido escrito pelo cliente de uma loja de eletrônicos, em português",
+      "maxLength": 600,
+      "minLength": 20,
+      "title": "Texto Pedido",
+      "type": "string"
+    },
+    "tipo_pedido": {
+      "description": "Rótulo do tipo de pedido",
+      "enum": [
+        "compra",
+        "troca",
+        "devolução",
+        "garantia",
+        "cancelamento"
+      ],
+      "title": "Tipo Pedido",
+      "type": "string"
+    },
+    "nome_cliente": {
+      "description": "Nome completo fictício do cliente",
+      "maxLength": 80,
+      "minLength": 3,
+      "title": "Nome Cliente",
+      "type": "string"
+    },
+    "email": {
+      "description": "Endereço de e-mail fictício do cliente",
+      "maxLength": 120,
+      "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+      "title": "Email",
+      "type": "string"
+    },
+    "telefone": {
+      "description": "Telefone fictício do cliente no formato brasileiro, ex.: (11) 91234-5678",
+      "pattern": "^\\(\\d{2}\\) 9?\\d{4}-\\d{4}$",
+      "title": "Telefone",
+      "type": "string"
+    },
+    "mensagens_cliente": {
+      "description": "Mensagens adicionais do cliente sobre o pedido, de 1 a 4 mensagens separadas por ' | '",
+      "maxLength": 1200,
+      "minLength": 10,
+      "title": "Mensagens Cliente",
+      "type": "string"
+    }
+  },
+  "required": [
+    "texto_pedido",
+    "tipo_pedido",
+    "nome_cliente",
+    "email",
+    "telefone",
+    "mensagens_cliente"
+  ],
+  "title": "Record",
+  "type": "object"
+}

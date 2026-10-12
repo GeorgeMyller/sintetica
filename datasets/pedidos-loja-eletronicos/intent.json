@@ -1,0 +1,24 @@
+{
+  "slug": "pedidos-loja-eletronicos",
+  "mode": "guiado",
+  "started_at": "2026-10-12T13:50:34Z",
+  "objective": {
+    "status": "definido",
+    "text": "treinar llm para classificar os tipos de pedidos"
+  },
+  "structure": {
+    "status": "definido",
+    "text": "texto do pedido do cliente e o rótulo do tipo, nome do cliente, email, telefone e mensagens de clientes"
+  },
+  "rules": {
+    "status": "definido",
+    "text": "os tipos são compra, troca, devolução, garantia e cancelamento"
+  },
+  "format": "csv",
+  "format_source": "usuario",
+  "volume": 1000,
+  "volume_source": "usuario",
+  "volume_rejections": 0,
+  "pii_masked": false,
+  "confirmed_at": "2026-10-12T13:58:16Z"
+}
