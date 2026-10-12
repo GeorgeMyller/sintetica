@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "id": "1db0f02fa842",
+  "created_at": "2026-10-12T11:06:33Z",
+  "n_records": 50,
+  "instructions": "Gere exatamente 50 registro(s) sintético(s) para o dataset \"clientes-ecommerce\".\nObjetivo: Testar pipeline de CRM e campanhas de marketing para e-commerce\nEstrutura: id_cliente, nome, email, cidade, estado, status_conta, total_pedidos, valor_gasto\nRegras: estado com siglas UF brasileiras como SP, RJ, MG; status_conta enum ativo, inativo, pendente; total_pedidos inteiro de 0 a 50; valor_gasto decimal positivo\nOs exemplos vêm da amostra aprovada: use-os como referência e não repita nenhum.\nResponda com 1 objeto JSON por linha, seguindo o JSON Schema do pedido.\nVarie os valores entre os registros; não repita registros.\nUse dados fictícios; não use dados pessoais reais.\nBloco 1 de 1, rodada 1 de 4.",
+  "schema_json": {
+    "additionalProperties": false,
+    "properties": {
+      "id_cliente": {
+        "description": "Identificador único do cliente (UUID ou código alfanumérico)",
+        "maxLength": 36,
+        "minLength": 5,
+        "title": "Id Cliente",
+        "type": "string"
+      },
+      "nome": {
+        "description": "Nome completo do cliente",
+        "maxLength": 80,
+        "minLength": 3,
+        "title": "Nome",
+        "type": "string"
+      },
+      "email": {
+        "description": "Endereço de e-mail fictício do cliente",
+        "pattern": "^[^@]+@[^@]+\\.[^@]+$",
+        "title": "Email",
+        "type": "string"
+      },
+      "cidade": {
+        "description": "Cidade de residência do cliente",
+        "maxLength": 50,
+        "minLength": 2,
+        "title": "Cidade",
+        "type": "string"
+      },
+      "estado": {
+        "description": "Sigla da Unidade Federativa brasileira",
+        "enum": [
+          "SP",
+          "RJ",
+          "MG",
+          "RS",
+          "PR",
+          "SC",
+          "BA",
+          "PE",
+          "CE",
+          "DF"
+        ],
+        "title": "Estado",
+        "type": "string"
+      },
+      "status_conta": {
+        "description": "Estado atual da conta do cliente",
+        "enum": [
+          "ativo",
+          "inativo",
+          "pendente"
+        ],
+        "title": "Status Conta",
+        "type": "string"
+      },
+      "total_pedidos": {
+        "description": "Número acumulado de compras realizadas",
+        "maximum": 50,
+        "minimum": 0,
+        "title": "Total Pedidos",
+        "type": "integer"
+      },
+      "valor_gasto": {
+        "anyOf": [
+          {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "Valor total gasto em reais (BRL)",
+        "title": "Valor Gasto"
+      }
+    },
+    "required": [
+      "id_cliente",
+      "nome",
+      "email",
+      "cidade",
+      "estado",
+      "status_conta",
+      "total_pedidos",
+      "valor_gasto"
+    ],
+    "title": "Record",
+    "type": "object"
+  },
+  "seeds": [
+    {
+      "id_cliente": "usr_9b1a8c2d-3f4e-48a1",
+      "nome": "Lucas Silveira Mendes",
+      "email": "bianca74@example.com",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "status_conta": "ativo",
+      "total_pedidos": 12,
+      "valor_gasto": 1450.75
+    },
+    {
+      "id_cliente": "usr_7d2f9e1a-8c3b-41f2",
+      "nome": "Beatriz Rocha Lima",
+      "email": "riosdiego@example.org",
+      "cidade": "Curitiba",
+      "estado": "PR",
+      "status_conta": "ativo",
+      "total_pedidos": 4,
+      "valor_gasto": 320.5
+    },
+    {
+      "id_cliente": "usr_3e5a1b9c-2d4f-47c3",
+      "nome": "Rodrigo Alves Nogueira",
+      "email": "pintogabriela@example.com",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "status_conta": "pendente",
+      "total_pedidos": 0,
+      "valor_gasto": 0.0
+    }
+  ],
+  "response_format": "1 objeto JSON por linha (JSONL), sem texto extra"
+}

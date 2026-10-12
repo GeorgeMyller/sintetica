@@ -1,0 +1,32 @@
+{
+  "name": "sintetica",
+  "version": "0.1.0",
+  "description": "Instalador das skills do sintetica: geração de dados sintéticos orientada por intenção.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "sintetica": "bin/sintetica.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "templates",
+    "runtime"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "node --test test/*.test.js",
+    "coverage": "c8 --check-coverage --lines 80 --reporter=text node --test test/*.test.js",
+    "build:runtime": "cd .. && uv build --wheel --out-dir installer/runtime",
+    "prepack": "npm run build:runtime"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "c8": "^10.1.2",
+    "typescript": "^5.6.0"
+  }
+}

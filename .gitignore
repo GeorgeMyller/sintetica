@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.coverage
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+node_modules/
+installer/node_modules/
+installer/coverage/
+.DS_Store
+*.pyc

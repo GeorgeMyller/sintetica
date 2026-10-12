@@ -1,0 +1,77 @@
+{
+  "model_name": "Record",
+  "format": "json",
+  "fields": [
+    {
+      "name": "codigo",
+      "type": "text",
+      "constraints": {
+        "min_length": 3,
+        "max_length": 5,
+        "pattern": "^[A-Z]+$"
+      }
+    },
+    {
+      "name": "idade",
+      "type": "int",
+      "constraints": {
+        "ge": 18,
+        "le": 90
+      }
+    },
+    {
+      "name": "preco",
+      "type": "decimal",
+      "constraints": {
+        "ge": "0.01",
+        "le": 1000,
+        "casas_decimais": 2
+      }
+    },
+    {
+      "name": "data",
+      "type": "date",
+      "constraints": {
+        "ge": "2000-01-01",
+        "le": "2030-12-31"
+      }
+    },
+    {
+      "name": "momento",
+      "type": "datetime",
+      "constraints": {
+        "ge": "2000-01-01T00:00:00"
+      }
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "constraints": {
+        "choices": [
+          "novo",
+          "pago"
+        ]
+      }
+    },
+    {
+      "name": "itens",
+      "type": "list",
+      "constraints": {
+        "min_length": 1,
+        "max_length": 3
+      },
+      "items": {
+        "name": "item",
+        "type": "int",
+        "constraints": {
+          "ge": 0
+        }
+      }
+    },
+    {
+      "name": "obs",
+      "type": "text",
+      "required": false
+    }
+  ]
+}

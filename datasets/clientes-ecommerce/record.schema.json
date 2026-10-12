@@ -1,0 +1,92 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id_cliente": {
+      "description": "Identificador único do cliente (UUID ou código alfanumérico)",
+      "maxLength": 36,
+      "minLength": 5,
+      "title": "Id Cliente",
+      "type": "string"
+    },
+    "nome": {
+      "description": "Nome completo do cliente",
+      "maxLength": 80,
+      "minLength": 3,
+      "title": "Nome",
+      "type": "string"
+    },
+    "email": {
+      "description": "Endereço de e-mail fictício do cliente",
+      "pattern": "^[^@]+@[^@]+\\.[^@]+$",
+      "title": "Email",
+      "type": "string"
+    },
+    "cidade": {
+      "description": "Cidade de residência do cliente",
+      "maxLength": 50,
+      "minLength": 2,
+      "title": "Cidade",
+      "type": "string"
+    },
+    "estado": {
+      "description": "Sigla da Unidade Federativa brasileira",
+      "enum": [
+        "SP",
+        "RJ",
+        "MG",
+        "RS",
+        "PR",
+        "SC",
+        "BA",
+        "PE",
+        "CE",
+        "DF"
+      ],
+      "title": "Estado",
+      "type": "string"
+    },
+    "status_conta": {
+      "description": "Estado atual da conta do cliente",
+      "enum": [
+        "ativo",
+        "inativo",
+        "pendente"
+      ],
+      "title": "Status Conta",
+      "type": "string"
+    },
+    "total_pedidos": {
+      "description": "Número acumulado de compras realizadas",
+      "maximum": 50,
+      "minimum": 0,
+      "title": "Total Pedidos",
+      "type": "integer"
+    },
+    "valor_gasto": {
+      "anyOf": [
+        {
+          "maximum": 5000.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Valor total gasto em reais (BRL)",
+      "title": "Valor Gasto"
+    }
+  },
+  "required": [
+    "id_cliente",
+    "nome",
+    "email",
+    "cidade",
+    "estado",
+    "status_conta",
+    "total_pedidos",
+    "valor_gasto"
+  ],
+  "title": "Record",
+  "type": "object"
+}

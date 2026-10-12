@@ -1,0 +1,3 @@
+{"id_cliente":"usr_9b1a8c2d-3f4e-48a1","nome":"Lucas Silveira Mendes","email":"bianca74@example.com","cidade":"São Paulo","estado":"SP","status_conta":"ativo","total_pedidos":12,"valor_gasto":1450.75}
+{"id_cliente":"usr_7d2f9e1a-8c3b-41f2","nome":"Beatriz Rocha Lima","email":"riosdiego@example.org","cidade":"Curitiba","estado":"PR","status_conta":"ativo","total_pedidos":4,"valor_gasto":320.50}
+{"id_cliente":"usr_3e5a1b9c-2d4f-47c3","nome":"Rodrigo Alves Nogueira","email":"pintogabriela@example.com","cidade":"Belo Horizonte","estado":"MG","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}

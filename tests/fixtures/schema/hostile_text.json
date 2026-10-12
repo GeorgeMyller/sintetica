@@ -1,0 +1,31 @@
+{
+  "model_name": "Record",
+  "format": "json",
+  "fields": [
+    {
+      "name": "campo",
+      "type": "text",
+      "description": "aspas \" e ' e barra \\ \nimport os\nos.system('echo invadido')",
+      "constraints": {
+        "pattern": "^\"?[a-z']*$"
+      }
+    },
+    {
+      "name": "escolha",
+      "type": "enum",
+      "constraints": {
+        "choices": [
+          "a\"b",
+          "c'd",
+          "e\\f",
+          "\nimport os"
+        ]
+      }
+    },
+    {
+      "name": "longo",
+      "type": "text",
+      "description": "texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo texto longo "
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{"ts": "2026-10-09T16:47:23Z", "action": "T001", "status": "done", "files": ["pyproject.toml"]}
+{"ts": "2026-10-09T16:47:23Z", "action": "T002", "status": "done", "files": ["src/sintetica/__init__.py", "src/sintetica/py.typed"]}
+{"ts": "2026-10-09T16:47:23Z", "action": "T003", "status": "done", "files": [".gitignore"]}
+{"ts": "2026-10-09T16:47:23Z", "action": "T004", "status": "done", "files": ["uv.lock"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T005", "status": "done", "files": ["tests/fixtures/pii_reference/cpf.json", "tests/fixtures/pii_reference/cnpj.json"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T006", "status": "done", "files": ["tests/fixtures/pii_reference/email.json", "tests/fixtures/pii_reference/phone.json"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T007", "status": "done", "files": ["tests/fixtures/pii_reference/card.json", "tests/fixtures/pii_reference/ipv4.json", "tests/fixtures/pii_reference/ipv6.json"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T008", "status": "done", "files": ["tests/pii/test_checksums.py"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T009", "status": "done", "files": ["tests/pii/test_reference_set.py"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T010", "status": "done", "files": ["tests/pii/test_guard.py"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T011", "status": "done", "files": ["tests/pii/test_allowlist_policy.py"]}
+{"ts": "2026-10-09T16:53:48Z", "action": "T012", "status": "done", "files": ["src/sintetica/pii/domain.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T013", "status": "done", "files": ["src/sintetica/pii/checksums.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T014", "status": "done", "files": ["src/sintetica/pii/normalize.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T015", "status": "done", "files": ["src/sintetica/pii/ports.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T016", "status": "done", "files": ["src/sintetica/pii/detectors.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T017", "status": "done", "files": ["src/sintetica/pii/detectors.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T018", "status": "done", "files": ["src/sintetica/pii/substitutes.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T019", "status": "done", "files": ["src/sintetica/pii/allowlist.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T020", "status": "done", "files": ["src/sintetica/pii/policy.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T021", "status": "done", "files": ["src/sintetica/pii/guard.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T022", "status": "done", "files": ["src/sintetica/pii/guard.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T023", "status": "done", "files": ["src/sintetica/pii/guard.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T024", "status": "done", "files": ["src/sintetica/pii/__init__.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T025", "status": "done", "files": ["tests/pii/test_guard.py", "pyproject.toml"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T026", "status": "done", "files": ["tests/pii/test_perf.py"]}
+{"ts": "2026-10-09T16:53:49Z", "action": "T027", "status": "done", "files": ["docs/pii-guard.md"]}

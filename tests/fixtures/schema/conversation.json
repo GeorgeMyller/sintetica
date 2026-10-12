@@ -1,0 +1,29 @@
+{
+  "model_name": "Record",
+  "format": "jsonl",
+  "kind": "conversation",
+  "fields": [
+    {
+      "name": "sentimento",
+      "type": "enum",
+      "description": "rótulo de sentimento",
+      "constraints": {
+        "choices": [
+          "positivo",
+          "negativo",
+          "neutro"
+        ]
+      }
+    },
+    {
+      "name": "confianca",
+      "type": "decimal",
+      "required": false,
+      "constraints": {
+        "ge": 0,
+        "le": 1,
+        "casas_decimais": 2
+      }
+    }
+  ]
+}

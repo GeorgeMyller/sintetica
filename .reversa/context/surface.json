@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-10-12T10:10:00Z",
+  "project_root": "/Volumes/SSD-EXTERNO/data_sintetic_generation",
+  "languages": [
+    { "name": "Python", "extensions": [".py"], "file_count": 144 },
+    { "name": "JavaScript", "extensions": [".js"], "file_count": 15 },
+    { "name": "JSON", "extensions": [".json"], "file_count": 28 },
+    { "name": "Markdown", "extensions": [".md"], "file_count": 15 }
+  ],
+  "primary_language": "Python",
+  "frameworks": [
+    { "name": "Pydantic", "version": "2.14.1", "source": "uv.lock" },
+    { "name": "Faker", "version": "40.42.0", "source": "uv.lock" },
+    { "name": "httpx", "version": "0.28.1", "source": "uv.lock" },
+    { "name": "pytest", "version": "9.1.1", "source": "uv.lock" },
+    { "name": "mypy", "version": "2.4.0", "source": "uv.lock" },
+    { "name": "ruff", "version": "0.16.10", "source": "uv.lock" },
+    { "name": "TypeScript (checkJs)", "version": "5.9.3", "source": "installer/package-lock.json" },
+    { "name": "c8", "version": "10.1.3", "source": "installer/package-lock.json" }
+  ],
+  "package_manager": "uv (Python), npm (installer)",
+  "entry_points": [
+    { "path": "src/sintetica/cli.py", "type": "cli_entry" },
+    { "path": "src/sintetica/batch/worker.py", "type": "background_worker" },
+    { "path": "installer/bin/sintetica.js", "type": "cli_entry" }
+  ],
+  "config_files": [
+    "pyproject.toml",
+    "uv.lock",
+    "installer/package.json",
+    "installer/tsconfig.json",
+    "installer/templates/policy.json",
+    "src/sintetica/providers/data/defaults.json"
+  ],
+  "ci_cd": [],
+  "database_hints": [],
+  "test_framework": "pytest (runtime), node:test (installer)",
+  "test_file_count": 58,
+  "modules": [
+    "pii",
+    "providers",
+    "schema",
+    "intent",
+    "sample",
+    "batch",
+    "quality",
+    "installer"
+  ],
+  "external_integrations": [
+    "OpenAI API",
+    "Anthropic API",
+    "Gemini API",
+    "Ollama (local)",
+    "Agente do harness (arquivos requests/)"
+  ],
+  "total_files": 205,
+  "organization_suggestion": {
+    "granularity": "module",
+    "rationale": "O runtime está organizado em pastas de domínio sob src/sintetica/ e o instalador é um pacote à parte.",
+    "signals": [
+      {
+        "type": "top_level_domain_folders",
+        "evidence": [
+          "src/sintetica/pii/",
+          "src/sintetica/providers/",
+          "src/sintetica/schema/",
+          "src/sintetica/intent/",
+          "src/sintetica/sample/",
+          "src/sintetica/batch/",
+          "src/sintetica/quality/",
+          "installer/"
+        ]
+      }
+    ],
+    "features": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema-version": 1,
+  "feature-dir": "_reversa_forward/008-cli-installer",
+  "feature-id": "008",
+  "short-name": "cli-installer",
+  "started-at": "2026-10-12T09:44:31Z",
+  "current-stage": "coding",
+  "stages-completed": [
+    "requirements",
+    "clarify",
+    "plan",
+    "to-do",
+    "coding"
+  ],
+  "paused-features": []
+}

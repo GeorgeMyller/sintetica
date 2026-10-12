@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(_reversa_sdd/**)",
+      "Edit(_reversa_forward/**)",
+      "Edit(.reversa/**)",
+      "Read(_reversa_sdd/**)",
+      "Read(_reversa_forward/**)",
+      "Read(.reversa/**)"
+    ]
+  }
+}

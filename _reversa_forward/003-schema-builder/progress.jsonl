@@ -1,0 +1,29 @@
+{"ts": "2026-10-12T08:12:22Z", "action": "T001", "status": "done", "files": ["pyproject.toml"]}
+{"ts": "2026-10-12T08:12:22Z", "action": "T002", "status": "done", "files": ["uv.lock"]}
+{"ts": "2026-10-12T08:12:22Z", "action": "T003", "status": "done", "files": ["src/sintetica/schema/__init__.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T012", "status": "done", "files": ["src/sintetica/schema/spec.py", "src/sintetica/schema/walk.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T013", "status": "done", "files": ["src/sintetica/schema/checks.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T014", "status": "done", "files": ["src/sintetica/schema/names.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T015", "status": "done", "files": ["src/sintetica/schema/csvflat.py", "src/sintetica/schema/validators.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T016", "status": "done", "files": ["src/sintetica/schema/version.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T017", "status": "done", "files": ["src/sintetica/schema/codegen.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T018", "status": "done", "files": ["src/sintetica/schema/codegen.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T019", "status": "done", "files": ["src/sintetica/schema/loader.py"]}
+{"ts": "2026-10-12T08:18:30Z", "action": "T020", "status": "done", "files": ["src/sintetica/schema/formats.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T021", "status": "done", "files": ["src/sintetica/schema/render.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T022", "status": "done", "files": ["src/sintetica/schema/state.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T023", "status": "done", "files": ["src/sintetica/schema/intent.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T024", "status": "done", "files": ["src/sintetica/schema/service.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T025", "status": "done", "files": ["src/sintetica/schema/service.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T026", "status": "done", "files": ["src/sintetica/cli.py"]}
+{"ts": "2026-10-12T08:18:31Z", "action": "T027", "status": "done", "files": ["src/sintetica/schema/__init__.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T004", "status": "done", "files": ["tests/fixtures/schema/"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T005", "status": "done", "files": ["tests/schema/test_spec_checks.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T006", "status": "done", "files": ["tests/schema/test_names.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T007", "status": "done", "files": ["tests/schema/test_csvflat.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T008", "status": "done", "files": ["tests/schema/test_codegen.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T009", "status": "done", "files": ["tests/schema/test_codegen_static.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T010", "status": "done", "files": ["tests/schema/test_formats.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T011", "status": "done", "files": ["tests/schema/test_service_cli.py", "tests/schema/conftest.py"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T028", "status": "done", "files": ["tests/schema/"]}
+{"ts": "2026-10-12T08:22:03Z", "action": "T029", "status": "done", "files": ["docs/schema-builder.md"]}

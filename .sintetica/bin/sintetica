@@ -1,0 +1,10 @@
+#!/bin/sh
+# Lançador do runtime do sintetica, criado por `npx sintetica install`.
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+SINTETICA_CMD=".sintetica/bin/sintetica"
+export SINTETICA_CMD
+WHEEL="$ROOT/.sintetica/runtime/sintetica-0.1.0-py3-none-any.whl"
+if [ -f "$WHEEL" ]; then
+  exec uvx --from "$WHEEL" sintetica "$@"
+fi
+exec uv run sintetica "$@"

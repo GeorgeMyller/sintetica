@@ -1,0 +1,100 @@
+{
+  "fields": [
+    {
+      "constraints": {
+        "max_length": 36,
+        "min_length": 5
+      },
+      "description": "Identificador único do cliente (UUID ou código alfanumérico)",
+      "name": "id_cliente",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "max_length": 80,
+        "min_length": 3
+      },
+      "description": "Nome completo do cliente",
+      "name": "nome",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "pattern": "^[^@]+@[^@]+\\.[^@]+$"
+      },
+      "description": "Endereço de e-mail fictício do cliente",
+      "name": "email",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "max_length": 50,
+        "min_length": 2
+      },
+      "description": "Cidade de residência do cliente",
+      "name": "cidade",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "constraints": {
+        "choices": [
+          "SP",
+          "RJ",
+          "MG",
+          "RS",
+          "PR",
+          "SC",
+          "BA",
+          "PE",
+          "CE",
+          "DF"
+        ]
+      },
+      "description": "Sigla da Unidade Federativa brasileira",
+      "name": "estado",
+      "required": true,
+      "type": "enum"
+    },
+    {
+      "constraints": {
+        "choices": [
+          "ativo",
+          "inativo",
+          "pendente"
+        ]
+      },
+      "description": "Estado atual da conta do cliente",
+      "name": "status_conta",
+      "required": true,
+      "type": "enum"
+    },
+    {
+      "constraints": {
+        "ge": 0,
+        "le": 50
+      },
+      "description": "Número acumulado de compras realizadas",
+      "name": "total_pedidos",
+      "required": true,
+      "type": "int"
+    },
+    {
+      "constraints": {
+        "casas_decimais": 2,
+        "ge": 0,
+        "le": 5000
+      },
+      "description": "Valor total gasto em reais (BRL)",
+      "name": "valor_gasto",
+      "required": true,
+      "type": "decimal"
+    }
+  ],
+  "format": "jsonl",
+  "kind": "records",
+  "model_name": "Record"
+}

@@ -1,0 +1,84 @@
+{
+  "format": "jsonl",
+  "kind": "records",
+  "fields": [
+    {
+      "name": "id_cliente",
+      "type": "text",
+      "required": true,
+      "description": "Identificador único do cliente (UUID ou código alfanumérico)",
+      "constraints": {
+        "min_length": 5,
+        "max_length": 36
+      }
+    },
+    {
+      "name": "nome",
+      "type": "text",
+      "required": true,
+      "description": "Nome completo do cliente",
+      "constraints": {
+        "min_length": 3,
+        "max_length": 80
+      }
+    },
+    {
+      "name": "email",
+      "type": "text",
+      "required": true,
+      "description": "Endereço de e-mail fictício do cliente",
+      "constraints": {
+        "pattern": "^[^@]+@[^@]+\\.[^@]+$"
+      }
+    },
+    {
+      "name": "cidade",
+      "type": "text",
+      "required": true,
+      "description": "Cidade de residência do cliente",
+      "constraints": {
+        "min_length": 2,
+        "max_length": 50
+      }
+    },
+    {
+      "name": "estado",
+      "type": "enum",
+      "required": true,
+      "description": "Sigla da Unidade Federativa brasileira",
+      "constraints": {
+        "choices": ["SP", "RJ", "MG", "RS", "PR", "SC", "BA", "PE", "CE", "DF"]
+      }
+    },
+    {
+      "name": "status_conta",
+      "type": "enum",
+      "required": true,
+      "description": "Estado atual da conta do cliente",
+      "constraints": {
+        "choices": ["ativo", "inativo", "pendente"]
+      }
+    },
+    {
+      "name": "total_pedidos",
+      "type": "int",
+      "required": true,
+      "description": "Número acumulado de compras realizadas",
+      "constraints": {
+        "ge": 0,
+        "le": 50
+      }
+    },
+    {
+      "name": "valor_gasto",
+      "type": "decimal",
+      "required": true,
+      "description": "Valor total gasto em reais (BRL)",
+      "constraints": {
+        "ge": 0,
+        "le": 5000,
+        "casas_decimais": 2
+      }
+    }
+  ]
+}

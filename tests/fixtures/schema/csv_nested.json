@@ -1,0 +1,51 @@
+{
+  "model_name": "Record",
+  "format": "csv",
+  "fields": [
+    {
+      "name": "nome",
+      "type": "text"
+    },
+    {
+      "name": "tags",
+      "type": "list",
+      "items": {
+        "name": "tag",
+        "type": "text"
+      }
+    },
+    {
+      "name": "notas",
+      "type": "list",
+      "required": false,
+      "items": {
+        "name": "nota",
+        "type": "decimal",
+        "constraints": {
+          "casas_decimais": 1
+        }
+      }
+    },
+    {
+      "name": "endereco",
+      "type": "object",
+      "required": false,
+      "fields": [
+        {
+          "name": "cidade",
+          "type": "text"
+        },
+        {
+          "name": "geo",
+          "type": "object",
+          "fields": [
+            {
+              "name": "lat",
+              "type": "decimal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

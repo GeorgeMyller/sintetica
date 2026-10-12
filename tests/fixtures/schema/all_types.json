@@ -1,0 +1,63 @@
+{
+  "model_name": "Record",
+  "format": "json",
+  "fields": [
+    {
+      "name": "nome",
+      "type": "text"
+    },
+    {
+      "name": "idade",
+      "type": "int"
+    },
+    {
+      "name": "saldo",
+      "type": "decimal"
+    },
+    {
+      "name": "ativo",
+      "type": "bool"
+    },
+    {
+      "name": "nascimento",
+      "type": "date"
+    },
+    {
+      "name": "criado_em",
+      "type": "datetime"
+    },
+    {
+      "name": "uf",
+      "type": "enum",
+      "constraints": {
+        "choices": [
+          "SP",
+          "RJ"
+        ]
+      }
+    },
+    {
+      "name": "tags",
+      "type": "list",
+      "items": {
+        "name": "tag",
+        "type": "text"
+      }
+    },
+    {
+      "name": "endereco",
+      "type": "object",
+      "fields": [
+        {
+          "name": "cidade",
+          "type": "text"
+        },
+        {
+          "name": "cep",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

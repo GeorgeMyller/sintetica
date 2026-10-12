@@ -1,0 +1,50 @@
+{"id_cliente":"cli_6a48925703aa","nome":"Ana Clara Souza","email":"rcostela@example.org","cidade":"Rio de Janeiro","estado":"RJ","status_conta":"ativo","total_pedidos":17,"valor_gasto":907.24}
+{"id_cliente":"cli_201be1863e50","nome":"Carlos Eduardo Lima","email":"mathias46@example.org","cidade":"Niterói","estado":"RJ","status_conta":"ativo","total_pedidos":43,"valor_gasto":3893.65}
+{"id_cliente":"cli_42c8cf88fcb7","nome":"Mariana Silva Santos","email":"xmartins@example.com","cidade":"Fortaleza","estado":"CE","status_conta":"ativo","total_pedidos":37,"valor_gasto":2465.83}
+{"id_cliente":"cli_db31aee395f2","nome":"Felipe Barbosa Costa","email":"da-rochaliz@example.org","cidade":"São Paulo","estado":"SP","status_conta":"ativo","total_pedidos":13,"valor_gasto":681.84}
+{"id_cliente":"cli_db73dcbe854b","nome":"Juliana Fernandes","email":"macedoemanuella@example.net","cidade":"São Paulo","estado":"SP","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_7aa3fd392a04","nome":"Gabriel Ribeiro Dias","email":"jrios@example.org","cidade":"Fortaleza","estado":"CE","status_conta":"inativo","total_pedidos":14,"valor_gasto":961.67}
+{"id_cliente":"cli_8ae3eb0e383c","nome":"Larissa Martins","email":"ana-luizaduarte@example.org","cidade":"Caxias do Sul","estado":"RS","status_conta":"ativo","total_pedidos":10,"valor_gasto":873.60}
+{"id_cliente":"cli_40cb512ddbe2","nome":"Thiago Pereira","email":"stellasouza@example.net","cidade":"Londrina","estado":"PR","status_conta":"ativo","total_pedidos":9,"valor_gasto":460.34}
+{"id_cliente":"cli_544d1129f6cf","nome":"Camila Castro Oliveira","email":"pimentavitor-gabriel@example.com","cidade":"Londrina","estado":"PR","status_conta":"ativo","total_pedidos":5,"valor_gasto":317.47}
+{"id_cliente":"cli_c019f0c6089b","nome":"Matheus Rodrigues","email":"rochadavi-luiz@example.org","cidade":"Florianópolis","estado":"SC","status_conta":"ativo","total_pedidos":38,"valor_gasto":2083.88}
+{"id_cliente":"cli_ca4811af0eba","nome":"Renata Gomes","email":"ynovaes@example.org","cidade":"Campinas","estado":"SP","status_conta":"inativo","total_pedidos":34,"valor_gasto":1508.31}
+{"id_cliente":"cli_b0a2b9bd58f6","nome":"Bruno Carvalho","email":"xribeiro@example.org","cidade":"Joinville","estado":"SC","status_conta":"ativo","total_pedidos":35,"valor_gasto":1994.59}
+{"id_cliente":"cli_74206b1214ca","nome":"Fernanda Cardoso","email":"marcela34@example.com","cidade":"Florianópolis","estado":"SC","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_ed7e68b81baf","nome":"Rafael Araujo","email":"nunessamuel@example.com","cidade":"Santos","estado":"SP","status_conta":"ativo","total_pedidos":42,"valor_gasto":2187.88}
+{"id_cliente":"cli_a4ae5e596a64","nome":"Patricia Moreira","email":"gmendes@example.org","cidade":"Curitiba","estado":"PR","status_conta":"ativo","total_pedidos":14,"valor_gasto":1399.81}
+{"id_cliente":"cli_cc7d72dcea49","nome":"Diego Cunha","email":"jcosta@example.org","cidade":"Joinville","estado":"SC","status_conta":"ativo","total_pedidos":29,"valor_gasto":2397.61}
+{"id_cliente":"cli_3326b6f5aa88","nome":"Amanda Teixeira","email":"anthony16@example.net","cidade":"Florianópolis","estado":"SC","status_conta":"ativo","total_pedidos":23,"valor_gasto":1417.84}
+{"id_cliente":"cli_671d32061dcc","nome":"Lucas Mendes","email":"ana-luiza05@example.com","cidade":"Caxias do Sul","estado":"RS","status_conta":"ativo","total_pedidos":38,"valor_gasto":3139.69}
+{"id_cliente":"cli_21accfb31eab","nome":"Vanessa Farias","email":"malmeida@example.net","cidade":"Fortaleza","estado":"CE","status_conta":"ativo","total_pedidos":10,"valor_gasto":696.70}
+{"id_cliente":"cli_511f382631ca","nome":"Rodrigo Nogueira","email":"carolinada-costa@example.org","cidade":"Caxias do Sul","estado":"RS","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_2e99df0934a0","nome":"Tatiane Moura","email":"fonsecabento@example.org","cidade":"Londrina","estado":"PR","status_conta":"ativo","total_pedidos":14,"valor_gasto":1352.89}
+{"id_cliente":"cli_94e11e062def","nome":"Vinicius Guimaraes","email":"freitasluara@example.org","cidade":"Londrina","estado":"PR","status_conta":"inativo","total_pedidos":17,"valor_gasto":679.39}
+{"id_cliente":"cli_f4cd2a510ff8","nome":"Aline Peixoto","email":"anna-lizleao@example.org","cidade":"Brasília","estado":"DF","status_conta":"ativo","total_pedidos":13,"valor_gasto":1094.05}
+{"id_cliente":"cli_a838b47c6aa9","nome":"Leonardo Pires","email":"luiza53@example.org","cidade":"Joinville","estado":"SC","status_conta":"inativo","total_pedidos":9,"valor_gasto":493.79}
+{"id_cliente":"cli_244ac0967e25","nome":"Jessica Antunes","email":"pimentasabrina@example.org","cidade":"Porto Alegre","estado":"RS","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_bf36a0680ddd","nome":"Danilo Fonseca","email":"maria-sophia39@example.net","cidade":"Brasília","estado":"DF","status_conta":"inativo","total_pedidos":37,"valor_gasto":2403.34}
+{"id_cliente":"cli_f04499a6d939","nome":"Sabrina Duarte","email":"rodriguesjoao-guilherme@example.com","cidade":"Porto Alegre","estado":"RS","status_conta":"ativo","total_pedidos":32,"valor_gasto":2304.44}
+{"id_cliente":"cli_ae669a722cf2","nome":"Eduardo Macedo","email":"monteirobeatriz@example.net","cidade":"Campinas","estado":"SP","status_conta":"ativo","total_pedidos":9,"valor_gasto":738.53}
+{"id_cliente":"cli_d7b85639430d","nome":"Priscila Rezende","email":"maria-aliceteixeira@example.com","cidade":"Salvador","estado":"BA","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_e0b0275b7a4b","nome":"Alexandre Neves","email":"joaoalves@example.com","cidade":"Joinville","estado":"SC","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_54ae13f51a0e","nome":"Leticia Borges","email":"azevedoravi-lucca@example.net","cidade":"Olinda","estado":"PE","status_conta":"ativo","total_pedidos":35,"valor_gasto":3484.55}
+{"id_cliente":"cli_332d81a3a6ce","nome":"Henrique Brandao","email":"costelamatteo@example.net","cidade":"São Paulo","estado":"SP","status_conta":"ativo","total_pedidos":43,"valor_gasto":4358.44}
+{"id_cliente":"cli_65c16263b5ab","nome":"Monica Pacheco","email":"campospedro-lucas@example.com","cidade":"Caxias do Sul","estado":"RS","status_conta":"ativo","total_pedidos":7,"valor_gasto":399.09}
+{"id_cliente":"cli_cef07982376e","nome":"Igor Cavalcante","email":"zda-paz@example.net","cidade":"Belo Horizonte","estado":"MG","status_conta":"inativo","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_5ef6958748df","nome":"Raquel Viana","email":"montenegronathan@example.com","cidade":"Caxias do Sul","estado":"RS","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_c7fa24812294","nome":"Marcio Alcantara","email":"hcostela@example.org","cidade":"Olinda","estado":"PE","status_conta":"ativo","total_pedidos":40,"valor_gasto":2295.33}
+{"id_cliente":"cli_f202aaf33c2f","nome":"Luana Queiroz","email":"isousa@example.org","cidade":"Olinda","estado":"PE","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_044fea42e702","nome":"Caio Figueiredo","email":"carolinanogueira@example.com","cidade":"Florianópolis","estado":"SC","status_conta":"ativo","total_pedidos":34,"valor_gasto":3621.42}
+{"id_cliente":"cli_30312c71985a","nome":"Debora Medeiros","email":"silvalevi@example.org","cidade":"Olinda","estado":"PE","status_conta":"ativo","total_pedidos":38,"valor_gasto":2253.84}
+{"id_cliente":"cli_1bbf8d76d2a6","nome":"Fabio Siqueira","email":"bella33@example.com","cidade":"São Paulo","estado":"SP","status_conta":"ativo","total_pedidos":23,"valor_gasto":2320.80}
+{"id_cliente":"cli_be829461be7f","nome":"Elaine Barreto","email":"xcampos@example.com","cidade":"Curitiba","estado":"PR","status_conta":"ativo","total_pedidos":3,"valor_gasto":159.20}
+{"id_cliente":"cli_936a7f2544d3","nome":"Guilherme Bicalho","email":"murilocarvalho@example.net","cidade":"Brasília","estado":"DF","status_conta":"ativo","total_pedidos":5,"valor_gasto":449.47}
+{"id_cliente":"cli_c5a20655794c","nome":"Tassia Franco","email":"ida-rocha@example.com","cidade":"Santos","estado":"SP","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_bdaa2d1d826b","nome":"Leandro Vilar","email":"maria-lizguerra@example.net","cidade":"Niterói","estado":"RJ","status_conta":"inativo","total_pedidos":35,"valor_gasto":1658.46}
+{"id_cliente":"cli_8c6507f546a5","nome":"Flavia Meireles","email":"hellena38@example.org","cidade":"Olinda","estado":"PE","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_69e9f7143fcc","nome":"Murilo Tavares","email":"bcavalcante@example.net","cidade":"Uberlândia","estado":"MG","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}
+{"id_cliente":"cli_97cd11e7ff2c","nome":"Caroline Porto","email":"samuelcavalcanti@example.com","cidade":"Uberlândia","estado":"MG","status_conta":"ativo","total_pedidos":25,"valor_gasto":2740.91}
+{"id_cliente":"cli_31a4249207df","nome":"Renan Sales","email":"da-luzaylla@example.net","cidade":"Florianópolis","estado":"SC","status_conta":"inativo","total_pedidos":33,"valor_gasto":2272.43}
+{"id_cliente":"cli_fc01d7876918","nome":"Bianca Pinheiro","email":"epimenta@example.com","cidade":"Porto Alegre","estado":"RS","status_conta":"ativo","total_pedidos":4,"valor_gasto":241.43}
+{"id_cliente":"cli_9e919a2dbe74","nome":"Samuel Castelo","email":"davi-miguel88@example.org","cidade":"Brasília","estado":"DF","status_conta":"pendente","total_pedidos":0,"valor_gasto":0.00}

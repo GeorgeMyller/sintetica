@@ -1,0 +1,7 @@
+{
+  "telemetry": false,
+  "pii_premask": true,
+  "cost_ceiling_usd": 5.00,
+  "provider_priority": ["harness", "ollama", "external"],
+  "pii_custom_patterns": []
+}

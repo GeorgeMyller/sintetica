@@ -1,0 +1,37 @@
+{
+  "model_name": "Record",
+  "format": "json",
+  "fields": [
+    {
+      "name": "idade",
+      "type": "int",
+      "constraints": {
+        "ge": 90,
+        "le": 18
+      }
+    },
+    {
+      "name": "codigo",
+      "type": "text",
+      "constraints": {
+        "min_length": 5,
+        "max_length": 2,
+        "pattern": "(abc"
+      }
+    },
+    {
+      "name": "uf",
+      "type": "enum",
+      "constraints": {
+        "choices": []
+      }
+    },
+    {
+      "name": "ativo",
+      "type": "bool",
+      "constraints": {
+        "ge": 1
+      }
+    }
+  ]
+}

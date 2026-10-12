@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "models": {
+    "openai": "gpt-4o-mini",
+    "anthropic": "claude-haiku-5-5",
+    "gemini": "gemini-1.5-flash",
+    "ollama": "llama3.2"
+  },
+  "prices": {
+    "gpt-4o-mini": { "input_usd_per_token": "0.00000015", "output_usd_per_token": "0.0000006" },
+    "claude-haiku-5-5": { "input_usd_per_token": "0.0000008", "output_usd_per_token": "0.000004" },
+    "gemini-1.5-flash": { "input_usd_per_token": "0.000000075", "output_usd_per_token": "0.0000003" }
+  }
+}

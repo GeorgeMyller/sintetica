@@ -1,0 +1,66 @@
+{
+  "sintetica_version": "0.1.0",
+  "installed_at": "2026-10-12T11:04:57Z",
+  "files": [
+    {
+      "path": ".agents/skills/sintetica-eval/SKILL.md",
+      "sha256": "ce7375ae16b67bdf7bef4858a1a3e1091868ddf3bbad914becf0ef51a92f8199"
+    },
+    {
+      "path": ".agents/skills/sintetica-generate/SKILL.md",
+      "sha256": "a9d4f46d796b40915a5054be5971eeec747fb8d2d8c07bb891a3bf5ffabf084d"
+    },
+    {
+      "path": ".agents/skills/sintetica-sample/SKILL.md",
+      "sha256": "7ba544fa82830fb7c3145f37f191968462be49da1b5d3ab8309b305c12ea7c8a"
+    },
+    {
+      "path": ".agents/skills/sintetica-schema/SKILL.md",
+      "sha256": "19d0b027537aed8e5363db10b93f06ec37f04850925e4b302d2a20b4f4a79121"
+    },
+    {
+      "path": ".agents/skills/sintetica-start/SKILL.md",
+      "sha256": "eaf7d688b3235ec91aff264c7f70b1c5e644caac5a728e329c1abbd0b0d8561e"
+    },
+    {
+      "path": ".claude/skills/sintetica-eval/SKILL.md",
+      "sha256": "ce7375ae16b67bdf7bef4858a1a3e1091868ddf3bbad914becf0ef51a92f8199"
+    },
+    {
+      "path": ".claude/skills/sintetica-generate/SKILL.md",
+      "sha256": "a9d4f46d796b40915a5054be5971eeec747fb8d2d8c07bb891a3bf5ffabf084d"
+    },
+    {
+      "path": ".claude/skills/sintetica-sample/SKILL.md",
+      "sha256": "7ba544fa82830fb7c3145f37f191968462be49da1b5d3ab8309b305c12ea7c8a"
+    },
+    {
+      "path": ".claude/skills/sintetica-schema/SKILL.md",
+      "sha256": "19d0b027537aed8e5363db10b93f06ec37f04850925e4b302d2a20b4f4a79121"
+    },
+    {
+      "path": ".claude/skills/sintetica-start/SKILL.md",
+      "sha256": "eaf7d688b3235ec91aff264c7f70b1c5e644caac5a728e329c1abbd0b0d8561e"
+    },
+    {
+      "path": ".sintetica/bin/sintetica",
+      "sha256": "bf3bb1ed0eba19eb14718637695cf60f32a1c5e53786501d0343a123ff99fa3d"
+    },
+    {
+      "path": ".sintetica/bin/sintetica.cmd",
+      "sha256": "f3b8394a8adb3170f67b12d315b963127a2d3f8570d296d277380a8a5538b59b"
+    },
+    {
+      "path": ".sintetica/policy.json",
+      "sha256": "5d2828381dc5720f71c2ed816cf4d6bc717e6ffbbd5c446ab5a33b43a83f2a42"
+    },
+    {
+      "path": ".sintetica/runtime/sintetica-0.1.0-py3-none-any.whl",
+      "sha256": "bffd993a4503f8035fbbb0e50cf55ba74412b98822a7e524350d14ddd230dd20"
+    },
+    {
+      "path": ".sintetica/state.json",
+      "sha256": "4a2423136abe5d46589c5305f3334b984de3a06d8b062ac70f90fe9150851571"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "clientes-ecommerce",
+  "mode": "guiado",
+  "started_at": "2026-10-12T11:05:09Z",
+  "objective": {
+    "status": "definido",
+    "text": "Testar pipeline de CRM e campanhas de marketing para e-commerce"
+  },
+  "structure": {
+    "status": "definido",
+    "text": "id_cliente, nome, email, cidade, estado, status_conta, total_pedidos, valor_gasto"
+  },
+  "rules": {
+    "status": "definido",
+    "text": "estado com siglas UF brasileiras como SP, RJ, MG; status_conta enum ativo, inativo, pendente; total_pedidos inteiro de 0 a 50; valor_gasto decimal positivo"
+  },
+  "format": "jsonl",
+  "format_source": "usuario",
+  "volume": 50,
+  "volume_source": "usuario",
+  "volume_rejections": 0,
+  "pii_masked": false,
+  "confirmed_at": "2026-10-12T11:05:29Z"
+}

@@ -1,0 +1,20 @@
+{
+  "model_name": "Record",
+  "format": "csv",
+  "fields": [
+    {
+      "name": "itens",
+      "type": "list",
+      "items": {
+        "name": "item",
+        "type": "object",
+        "fields": [
+          {
+            "name": "sku",
+            "type": "text"
+          }
+        ]
+      }
+    }
+  ]
+}

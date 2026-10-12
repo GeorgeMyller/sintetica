@@ -1,0 +1,1411 @@
+{
+  "generated_at": "2026-10-12T10:40:00Z",
+  "modules": [
+    {
+      "name": "pii",
+      "path": "src/sintetica/pii",
+      "purpose": "Detectar PII (7 tipos fixos + padrões extras) e trocar por valores falsos do mesmo formato, com allowlist por hash",
+      "primary_files": [
+        "src/sintetica/pii/guard.py",
+        "src/sintetica/pii/detectors.py",
+        "src/sintetica/pii/substitutes.py",
+        "src/sintetica/pii/allowlist.py",
+        "src/sintetica/pii/policy.py"
+      ],
+      "functions": [
+        {
+          "name": "PiiGuard.scan",
+          "file": "src/sintetica/pii/guard.py:89",
+          "params": [
+            "text: str",
+            "field: str | None"
+          ],
+          "returns": "list[PiiFinding]",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "PiiGuard.mask",
+          "file": "src/sintetica/pii/guard.py:127",
+          "params": [
+            "text: str",
+            "field: str | None"
+          ],
+          "returns": "MaskResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "PiiGuard.leaks",
+          "file": "src/sintetica/pii/guard.py:146",
+          "params": [
+            "text: str",
+            "field: str | None"
+          ],
+          "returns": "list[PiiFinding]",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "PiiGuard.for_dataset",
+          "file": "src/sintetica/pii/guard.py:74",
+          "params": [
+            "dataset_dir: Path",
+            "policy_path: Path",
+            "seed: int | None"
+          ],
+          "returns": "PiiGuard",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "load_custom_patterns",
+          "file": "src/sintetica/pii/policy.py:14",
+          "params": [
+            "path: Path"
+          ],
+          "returns": "tuple[str, ...]",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "PiiFinding",
+          "fields": [
+            {
+              "name": "type",
+              "type": "PiiType",
+              "required": true
+            },
+            {
+              "name": "start",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "end",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "field",
+              "type": "str | None",
+              "required": true
+            },
+            {
+              "name": "preview",
+              "type": "str",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "MaskResult",
+          "fields": [
+            {
+              "name": "text",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "counts",
+              "type": "Mapping[PiiType,int]",
+              "required": true
+            },
+            {
+              "name": "fallbacks",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "Coverage",
+          "fields": [
+            {
+              "name": "types",
+              "type": "tuple[PiiType]",
+              "required": true
+            },
+            {
+              "name": "custom_patterns",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "limits",
+              "type": "tuple[str]",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "CPF/CNPJ por módulo 11, cartão por Luhn, telefone só formatado ou com +55",
+          "location": "src/sintetica/pii/detectors.py:42-94",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Sobreposição: maior trecho vence; empate pela prioridade CARD>CNPJ>CPF>PHONE>IPV6>IPV4>EMAIL>CUSTOM",
+          "location": "src/sintetica/pii/guard.py:20-53",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Substituto: até 5 tentativas, diferente e detectável; senão *** e fallback",
+          "location": "src/sintetica/pii/guard.py:116-144",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Prévia = 2 caracteres + ***",
+          "location": "src/sintetica/pii/domain.py:71",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Padrão extra até 200 caracteres e compilável",
+          "location": "src/sintetica/pii/policy.py:11-35",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [],
+      "algorithms": [
+        "regex com fronteiras + validação",
+        "resolução de sobreposição",
+        "varredura em blocos de 64 KiB",
+        "SHA-256 do valor normalizado"
+      ],
+      "complexity": "medium"
+    },
+    {
+      "name": "providers",
+      "path": "src/sintetica/providers",
+      "purpose": "Porta LLMProvider: harness por arquivos e APIs externas (OpenAI, Anthropic, Gemini, Ollama), com política, custo, concorrência, mascaramento e retry",
+      "primary_files": [
+        "src/sintetica/providers/factory.py",
+        "src/sintetica/providers/selection.py",
+        "src/sintetica/providers/external/provider.py",
+        "src/sintetica/providers/harness/store.py",
+        "src/sintetica/providers/decorators/budget.py"
+      ],
+      "functions": [
+        {
+          "name": "build_provider",
+          "file": "src/sintetica/providers/factory.py:29",
+          "params": [
+            "n_records: int",
+            "dataset_dir",
+            "project_dir",
+            "harness_available",
+            "authorized_usd",
+            "per_request_estimate",
+            "concurrency"
+          ],
+          "returns": "tuple[LLMProvider, ProviderChoice]",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "select_provider",
+          "file": "src/sintetica/providers/selection.py:39",
+          "params": [
+            "priority",
+            "n_records",
+            "availability"
+          ],
+          "returns": "ProviderChoice",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "RequestStore.submit",
+          "file": "src/sintetica/providers/harness/store.py:86",
+          "params": [
+            "rid: str",
+            "raw: bytes"
+          ],
+          "returns": "int",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "ExternalAPIProvider.generate",
+          "file": "src/sintetica/providers/external/provider.py:66",
+          "params": [
+            "request"
+          ],
+          "returns": "GenerationResult",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "GenerationRequest",
+          "fields": [
+            {
+              "name": "schema_json",
+              "type": "Mapping",
+              "required": true
+            },
+            {
+              "name": "seeds",
+              "type": "Sequence[Mapping]",
+              "required": true
+            },
+            {
+              "name": "instructions",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "n_records",
+              "type": "int>=1",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "GenerationResult",
+          "fields": [
+            {
+              "name": "records",
+              "type": "tuple[dict]",
+              "required": true
+            },
+            {
+              "name": "input_tokens",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "output_tokens",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "cost_usd",
+              "type": "Decimal",
+              "required": true
+            },
+            {
+              "name": "provider",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "stop_reason",
+              "type": "str | None",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "CostEstimate",
+          "fields": [
+            {
+              "name": "provider",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "model",
+              "type": "str | None",
+              "required": true
+            },
+            {
+              "name": "n_records",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "avg_tokens",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "usd",
+              "type": "Decimal",
+              "required": true
+            },
+            {
+              "name": "requires_authorization",
+              "type": "bool",
+              "required": true
+            },
+            {
+              "name": "price_known",
+              "type": "bool",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "ProviderChoice",
+          "fields": [
+            {
+              "name": "provider",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "backend",
+              "type": "str | None",
+              "required": true
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "skipped",
+              "type": "tuple[str]",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "ProviderPolicy",
+          "fields": [
+            {
+              "name": "pii_premask",
+              "type": "bool",
+              "required": false
+            },
+            {
+              "name": "cost_ceiling_usd",
+              "type": "Decimal",
+              "required": false
+            },
+            {
+              "name": "provider_priority",
+              "type": "tuple[str]",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "Harness só com n_records ≤ 100 e harness disponível",
+          "location": "src/sintetica/providers/selection.py:44-50",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Prioridade padrão harness → ollama → external",
+          "location": "src/sintetica/providers/policy.py:19",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Teto padrão US$ 5,00; preço desconhecido exige autorização",
+          "location": "src/sintetica/providers/external/provider.py:107-114",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Retry só de falha temporária: 3 chamadas, 1 s e 2 s",
+          "location": "src/sintetica/providers/decorators/retrying.py:12-49",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Mascaramento do pedido também no Ollama",
+          "location": "src/sintetica/providers/factory.py:66-70",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Id do pedido = 12 hex do SHA-256 canônico",
+          "location": "src/sintetica/providers/harness/store.py:36-39",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [
+        "pii"
+      ],
+      "algorithms": [
+        "seleção por prioridade",
+        "teto com reserva sob lock",
+        "classificação de status HTTP"
+      ],
+      "complexity": "high"
+    },
+    {
+      "name": "schema",
+      "path": "src/sintetica/schema",
+      "purpose": "Contrato de dados: rascunho declarativo validado, nomes normalizados, CSV plano, geração determinística do Record Pydantic, revisão e serialização",
+      "primary_files": [
+        "src/sintetica/schema/service.py",
+        "src/sintetica/schema/codegen.py",
+        "src/sintetica/schema/checks.py",
+        "src/sintetica/schema/loader.py",
+        "src/sintetica/schema/formats.py"
+      ],
+      "functions": [
+        {
+          "name": "build",
+          "file": "src/sintetica/schema/service.py:133",
+          "params": [
+            "project_dir",
+            "slug"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "approve",
+          "file": "src/sintetica/schema/service.py:207",
+          "params": [
+            "project_dir",
+            "slug"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "generate_code",
+          "file": "src/sintetica/schema/codegen.py:262",
+          "params": [
+            "spec",
+            "version"
+          ],
+          "returns": "str",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "load_record_model",
+          "file": "src/sintetica/schema/loader.py:83",
+          "params": [
+            "dataset_dir"
+          ],
+          "returns": "type[BaseModel]",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "to_jsonl_line",
+          "file": "src/sintetica/schema/formats.py",
+          "params": [
+            "record"
+          ],
+          "returns": "str",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "SchemaSpecModel",
+          "fields": [
+            {
+              "name": "model_name",
+              "type": "Literal[Record]",
+              "required": false
+            },
+            {
+              "name": "format",
+              "type": "csv|json|jsonl",
+              "required": true
+            },
+            {
+              "name": "kind",
+              "type": "records|conversation",
+              "required": false
+            },
+            {
+              "name": "fields",
+              "type": "list[FieldSpecModel]",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "FieldSpecModel",
+          "fields": [
+            {
+              "name": "name",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "type",
+              "type": "FieldType",
+              "required": true
+            },
+            {
+              "name": "required",
+              "type": "bool",
+              "required": false
+            },
+            {
+              "name": "description",
+              "type": "str",
+              "required": false
+            },
+            {
+              "name": "constraints",
+              "type": "Constraints",
+              "required": false
+            },
+            {
+              "name": "items",
+              "type": "FieldSpecModel",
+              "required": false
+            },
+            {
+              "name": "fields",
+              "type": "list[FieldSpecModel]",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "SchemaState",
+          "fields": [
+            {
+              "name": "status",
+              "type": "em_revisao|aprovado",
+              "required": true
+            },
+            {
+              "name": "rounds",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "schema_version",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "approved_at",
+              "type": "str | None",
+              "required": false
+            },
+            {
+              "name": "warnings",
+              "type": "list[str]",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "Até 100 campos; conversa só em JSON/JSONL",
+          "location": "src/sintetica/schema/checks.py:138-153",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Restrições permitidas por tipo",
+          "location": "src/sintetica/schema/checks.py:18-28",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "CSV: objeto vira colunas com prefixo; lista simples vira 1 coluna com |; lista de objetos recusada",
+          "location": "src/sintetica/schema/csvflat.py:13-61",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Versão = SHA-256 do JSON canônico",
+          "location": "src/sintetica/schema/version.py:20",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Nenhum texto da definição vira código",
+          "location": "src/sintetica/schema/codegen.py:54-73",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Expresso aprova no build; 5 rodadas sugerem reiniciar",
+          "location": "src/sintetica/schema/state.py:67-82",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [],
+      "algorithms": [
+        "validação semântica",
+        "normalização de nomes",
+        "achatamento CSV",
+        "geração de código determinística",
+        "serialização com decimal exato"
+      ],
+      "complexity": "high"
+    },
+    {
+      "name": "intent",
+      "path": "src/sintetica/intent",
+      "purpose": "Entrevista de intenção: pasta e started_at antes da 1ª pergunta, respostas validadas e mascaradas, confirmação e próximo passo",
+      "primary_files": [
+        "src/sintetica/intent/service.py",
+        "src/sintetica/intent/answers.py",
+        "src/sintetica/intent/model.py",
+        "src/sintetica/intent/summary.py"
+      ],
+      "functions": [
+        {
+          "name": "start",
+          "file": "src/sintetica/intent/service.py:52",
+          "params": [
+            "project_dir",
+            "name",
+            "mode",
+            "now"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "set_answers",
+          "file": "src/sintetica/intent/service.py:105",
+          "params": [
+            "project_dir",
+            "slug",
+            "answers",
+            "masker_factory"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "confirm",
+          "file": "src/sintetica/intent/service.py:154",
+          "params": [
+            "project_dir",
+            "slug",
+            "now"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "apply_answers",
+          "file": "src/sintetica/intent/answers.py:100",
+          "params": [
+            "intent",
+            "answers",
+            "masker_factory"
+          ],
+          "returns": "tuple[IntentModel, list[str]]",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "IntentModel",
+          "fields": [
+            {
+              "name": "slug",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "mode",
+              "type": "guiado|expresso",
+              "required": false
+            },
+            {
+              "name": "started_at",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "objective",
+              "type": "Item",
+              "required": false
+            },
+            {
+              "name": "structure",
+              "type": "Item",
+              "required": false
+            },
+            {
+              "name": "rules",
+              "type": "Item",
+              "required": false
+            },
+            {
+              "name": "format",
+              "type": "csv|json|jsonl|None",
+              "required": false
+            },
+            {
+              "name": "volume",
+              "type": "int 1..10000|None",
+              "required": false
+            },
+            {
+              "name": "volume_rejections",
+              "type": "int",
+              "required": false
+            },
+            {
+              "name": "pii_masked",
+              "type": "bool",
+              "required": false
+            },
+            {
+              "name": "confirmed_at",
+              "type": "str | None",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "Item",
+          "fields": [
+            {
+              "name": "status",
+              "type": "pendente|definido|indefinido",
+              "required": false
+            },
+            {
+              "name": "text",
+              "type": "str | None",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "Respostas tudo ou nada; volume 1 a 10.000",
+          "location": "src/sintetica/intent/answers.py:100-150",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "3ª recusa de volume vira o padrão 10",
+          "location": "src/sintetica/intent/answers.py:119-135",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Não sei: JSONL e 10",
+          "location": "src/sintetica/intent/answers.py:137-146",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Resposta nova zera confirmed_at",
+          "location": "src/sintetica/intent/answers.py:172-173",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Expresso confirma só com objetivo e estrutura indefinidos",
+          "location": "src/sintetica/intent/summary.py:26-34",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [
+        "pii"
+      ],
+      "algorithms": [
+        "slug sem corrida"
+      ],
+      "complexity": "medium"
+    },
+    {
+      "name": "sample",
+      "path": "src/sintetica/sample",
+      "purpose": "Amostra de 3 a 5 registros para aprovação; semente do lote",
+      "primary_files": [
+        "src/sintetica/sample/service.py",
+        "src/sintetica/sample/review.py",
+        "src/sintetica/sample/request.py",
+        "src/sintetica/sample/state.py"
+      ],
+      "functions": [
+        {
+          "name": "run",
+          "file": "src/sintetica/sample/service.py:305",
+          "params": [
+            "project",
+            "slug",
+            "n",
+            "provider_factory"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "approve",
+          "file": "src/sintetica/sample/service.py:364",
+          "params": [
+            "project",
+            "slug"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "review_records",
+          "file": "src/sintetica/sample/review.py:48",
+          "params": [
+            "raw",
+            "model",
+            "existing",
+            "masker",
+            "limit"
+          ],
+          "returns": "ReviewResult",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "SampleState",
+          "fields": [
+            {
+              "name": "status",
+              "type": "aguardando_agente|em_revisao|aprovada|interrompida",
+              "required": true
+            },
+            {
+              "name": "n",
+              "type": "int 3..5",
+              "required": true
+            },
+            {
+              "name": "schema_version",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "round",
+              "type": "int",
+              "required": false
+            },
+            {
+              "name": "attempt",
+              "type": "int 0..3",
+              "required": false
+            },
+            {
+              "name": "accepted",
+              "type": "list[str]",
+              "required": false
+            },
+            {
+              "name": "rejected",
+              "type": "list[str]",
+              "required": false
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "SampleMeta",
+          "fields": [
+            {
+              "name": "schema_version",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "approved_at",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "provider",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "n_requested",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "n_records",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "partial",
+              "type": "bool",
+              "required": true
+            },
+            {
+              "name": "rounds",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "N de 3 a 5, padrão 3",
+          "location": "src/sintetica/sample/state.py:19-21",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "3 tentativas por rodada; tentativa no texto gera id novo",
+          "location": "src/sintetica/sample/request.py:29-56",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Resposta bruta do harness apagada depois de lida",
+          "location": "src/sintetica/sample/service.py:167-190",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Expresso aprova sozinho só com N válidos",
+          "location": "src/sintetica/sample/service.py:220-237",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [
+        "intent",
+        "schema",
+        "providers",
+        "pii"
+      ],
+      "algorithms": [
+        "laço de tentativas",
+        "revisão valida-mascara-revalida"
+      ],
+      "complexity": "medium"
+    },
+    {
+      "name": "batch",
+      "path": "src/sintetica/batch",
+      "purpose": "Lote completo: custo e autorização, blocos adaptativos, revisão, gravação durável, retomada, background com trava e conversão final",
+      "primary_files": [
+        "src/sintetica/batch/service.py",
+        "src/sintetica/batch/engine.py",
+        "src/sintetica/batch/output.py",
+        "src/sintetica/batch/lock.py",
+        "src/sintetica/batch/background.py"
+      ],
+      "functions": [
+        {
+          "name": "generate",
+          "file": "src/sintetica/batch/service.py:509",
+          "params": [
+            "project",
+            "slug",
+            "resume",
+            "new",
+            "authorize_usd",
+            "block_size_override"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "status",
+          "file": "src/sintetica/batch/service.py:609",
+          "params": [
+            "project",
+            "slug"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "BatchEngine.run_automatic",
+          "file": "src/sintetica/batch/engine.py:121",
+          "params": [
+            "state",
+            "provider"
+          ],
+          "returns": "RunState",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "convert_final",
+          "file": "src/sintetica/batch/output.py:82",
+          "params": [
+            "src",
+            "dest",
+            "fmt",
+            "model"
+          ],
+          "returns": "Path",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "RunState",
+          "fields": [
+            {
+              "name": "slug",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "status",
+              "type": "7 status",
+              "required": true
+            },
+            {
+              "name": "mode",
+              "type": "foreground|background",
+              "required": false
+            },
+            {
+              "name": "pid",
+              "type": "int | None",
+              "required": false
+            },
+            {
+              "name": "volume_requested",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "format",
+              "type": "csv|json|jsonl",
+              "required": true
+            },
+            {
+              "name": "accepted",
+              "type": "int",
+              "required": false
+            },
+            {
+              "name": "discarded_invalid",
+              "type": "int",
+              "required": false
+            },
+            {
+              "name": "discarded_duplicate",
+              "type": "int",
+              "required": false
+            },
+            {
+              "name": "round",
+              "type": "int 0..4",
+              "required": false
+            },
+            {
+              "name": "block_size",
+              "type": "int 1..100",
+              "required": true
+            },
+            {
+              "name": "avg_tokens",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "estimate_usd",
+              "type": "Decimal | None",
+              "required": false
+            },
+            {
+              "name": "authorized_usd",
+              "type": "Decimal | None",
+              "required": false
+            },
+            {
+              "name": "cost_usd",
+              "type": "Decimal",
+              "required": false
+            },
+            {
+              "name": "provider",
+              "type": "str",
+              "required": true
+            },
+            {
+              "name": "schema_version",
+              "type": "str",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "Provedor pelo volume total",
+          "location": "src/sintetica/batch/service.py:210-217",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Bloco = min(10, max(1, 4000 // tokens médios))",
+          "location": "src/sintetica/batch/plan.py:23-29",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "1ª rodada + 3 extras; concluido com ≥ 95%",
+          "location": "src/sintetica/batch/engine.py:58-75",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Acima de 100 registros, processo em background",
+          "location": "src/sintetica/batch/service.py:70",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Retomada com teto = autorizado − gasto",
+          "location": "src/sintetica/batch/service.py:439-470",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [
+        "providers",
+        "schema",
+        "intent",
+        "sample",
+        "pii",
+        "quality"
+      ],
+      "algorithms": [
+        "fila com trabalhadores e evento de parada",
+        "anexo com fsync e truncamento",
+        "trava herdada por pass_fds"
+      ],
+      "complexity": "high"
+    },
+    {
+      "name": "quality",
+      "path": "src/sintetica/quality",
+      "purpose": "Avaliação: conformidade, unicidade estrutural e semântica, PII, duração, veredito e relatório",
+      "primary_files": [
+        "src/sintetica/quality/service.py",
+        "src/sintetica/quality/metrics.py",
+        "src/sintetica/quality/semantic.py",
+        "src/sintetica/quality/reader.py",
+        "src/sintetica/quality/report.py"
+      ],
+      "functions": [
+        {
+          "name": "evaluate",
+          "file": "src/sintetica/quality/service.py:244",
+          "params": [
+            "project",
+            "slug",
+            "clock"
+          ],
+          "returns": "CommandResult",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "evaluate_after_lot",
+          "file": "src/sintetica/quality/service.py:253",
+          "params": [
+            "project",
+            "slug",
+            "clock"
+          ],
+          "returns": "list[str]",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "near_duplicates",
+          "file": "src/sintetica/quality/semantic.py:65",
+          "params": [
+            "sets",
+            "force_prefix"
+          ],
+          "returns": "list[int]",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "Report",
+          "fields": [
+            {
+              "name": "verdict",
+              "type": "APROVADO|REPROVADO",
+              "required": true
+            },
+            {
+              "name": "failed_metrics",
+              "type": "list[str]",
+              "required": true
+            },
+            {
+              "name": "conformity_pct",
+              "type": "Decimal",
+              "required": true
+            },
+            {
+              "name": "structural_uniqueness_pct",
+              "type": "Decimal",
+              "required": true
+            },
+            {
+              "name": "semantic_uniqueness_pct",
+              "type": "Decimal | None",
+              "required": true
+            },
+            {
+              "name": "pii_leaks",
+              "type": "int",
+              "required": true
+            },
+            {
+              "name": "duration_min",
+              "type": "Decimal | None",
+              "required": true
+            },
+            {
+              "name": "problem_indices",
+              "type": "ProblemIndices",
+              "required": true
+            },
+            {
+              "name": "finished_at",
+              "type": "str",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "APROVADO só com conformidade ≥ 95%, unicidades ≥ 90% e 0 vazamentos",
+          "location": "src/sintetica/quality/metrics.py:117-129",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Jaccard ≥ 0,8 sobre 3-gramas de palavras do texto livre",
+          "location": "src/sintetica/quality/semantic.py:19-27",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Volume da conformidade vem de run.json",
+          "location": "src/sintetica/quality/service.py:131-144",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Códigos 17 (REPROVADO) e 18 (dataset ausente)",
+          "location": "src/sintetica/quality/service.py:55-56",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [
+        "schema",
+        "intent",
+        "pii",
+        "batch",
+        "sample"
+      ],
+      "algorithms": [
+        "filtro de prefixo (AllPairs) exato",
+        "3-gramas de palavras"
+      ],
+      "complexity": "medium"
+    },
+    {
+      "name": "installer",
+      "path": "installer",
+      "purpose": "npx sintetica install: skills, wheel e lançador do runtime, .sintetica/ com política, estado e manifest",
+      "primary_files": [
+        "installer/src/install.js",
+        "installer/src/plan.js",
+        "installer/src/files.js",
+        "installer/src/runtime.js",
+        "installer/bin/sintetica.js"
+      ],
+      "functions": [
+        {
+          "name": "install",
+          "file": "installer/src/install.js:104",
+          "params": [
+            "opts"
+          ],
+          "returns": "Promise<number>",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "decide",
+          "file": "installer/src/plan.js:80",
+          "params": [
+            "file",
+            "root",
+            "manifest"
+          ],
+          "returns": "Action",
+          "confidence": "confirmed"
+        },
+        {
+          "name": "Journal.rollback",
+          "file": "installer/src/files.js:99",
+          "params": [],
+          "returns": "void",
+          "confidence": "confirmed"
+        }
+      ],
+      "entities": [
+        {
+          "name": "InstallManifest",
+          "fields": [
+            {
+              "name": "sintetica_version",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "installed_at",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "files",
+              "type": "list<{path,sha256}>",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        },
+        {
+          "name": "State",
+          "fields": [
+            {
+              "name": "version",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "harnesses",
+              "type": "list<string>",
+              "required": true
+            },
+            {
+              "name": "runtime_ready",
+              "type": "boolean",
+              "required": true
+            }
+          ],
+          "confidence": "confirmed"
+        }
+      ],
+      "business_rules": [
+        {
+          "description": "Node ≥ 18 antes de importar o resto",
+          "location": "installer/bin/sintetica.js",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Nunca substitui arquivo do usuário sem confirmação; --yes nunca substitui policy.json",
+          "location": "installer/src/plan.js:80-91",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Falha desfaz tudo desta execução",
+          "location": "installer/src/files.js:99-110",
+          "confidence": "confirmed"
+        },
+        {
+          "description": "Skills sempre em .agents/skills e .claude/skills",
+          "location": "installer/src/plan.js:14",
+          "confidence": "confirmed"
+        }
+      ],
+      "dependencies": [],
+      "algorithms": [
+        "diário de desfazer",
+        "idempotência por SHA-256"
+      ],
+      "complexity": "medium"
+    }
+  ]
+}
