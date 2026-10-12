@@ -9,3 +9,5 @@ installer/node_modules/
 installer/coverage/
 .DS_Store
 *.pyc
+.env
+.env*.local

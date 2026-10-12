@@ -9,6 +9,7 @@ from pathlib import Path
 
 import httpx
 
+from sintetica.dotenv import load_dotenv
 from sintetica.pii import PiiGuard
 from sintetica.providers.decorators.budget import BudgetedProvider
 from sintetica.providers.decorators.concurrency import (
@@ -44,6 +45,7 @@ def build_provider(
     A autorização acima do teto é do chamador: ele consulta `estimate_cost`, pergunta ao
     usuário e chama de novo com `authorized_usd` (D-24).
     """
+    load_dotenv(project_dir / ".env")
     policy_path = project_dir / POLICY_RELATIVE_PATH
     policy = load_provider_policy(policy_path)
     availability = probe_availability(harness_available, probe_transport)

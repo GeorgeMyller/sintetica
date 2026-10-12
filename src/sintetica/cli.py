@@ -22,6 +22,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from sintetica.command import cli_command
+from sintetica.dotenv import load_dotenv
 from sintetica.providers.domain import GenerationRequest
 from sintetica.providers.errors import RequestStoreError
 from sintetica.providers.harness.store import MAX_HARNESS_RECORDS, MAX_SUBMIT_BYTES, RequestStore
@@ -295,6 +296,8 @@ def _submit(args: argparse.Namespace) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    proj = getattr(args, "project_dir", None)
+    load_dotenv((proj / ".env") if isinstance(proj, Path) else None)
     if args.command == "request":
         return _request(args)
     if args.command == "schema":
